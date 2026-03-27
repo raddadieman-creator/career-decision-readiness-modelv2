@@ -1,0 +1,1618 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="نموذج تفاعلي لقياس جاهزية القرار المهني لدى طلاب المرحلة الثانوية">
+<title>نموذج قياس جاهزية القرار المهني</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════════
+   style.css — CareerCompass-SA
+   نموذج تفاعلي متعدد الوكلاء لقياس جاهزية القرار المهني
+   الباحثة: إيمان عبد العزيز الردادي
+   ══════════════════════════════════════════════ */
+
+:root {
+  --ink:#0f1623; --ink2:#1a2535; --ink3:#243044;
+  --gold:#f5a623; --gold2:#ffc85c;
+  --teal:#00c9aa; --teal2:#00f0cc;
+  --purple:#8b5cf6; --green:#22c55e; --rose:#f43f5e;
+  --text:#f1ece4; --text2:#a89880; --text3:#6b5c48;
+  --glow:0 0 30px rgba(245,166,35,0.12);
+  --radius:24px; --radius-sm:14px;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Tajawal',sans-serif;background:var(--ink);color:var(--text);min-height:100vh;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 900px 600px at 15% 10%,rgba(0,201,170,0.05),transparent 60%),radial-gradient(ellipse 700px 500px at 85% 85%,rgba(245,166,35,0.06),transparent 60%);pointer-events:none;z-index:0;}
+.container{max-width:720px;margin:0 auto;padding:1.5rem 1.25rem 6rem;position:relative;z-index:1;}
+
+/* ─ HEADER ─ */
+.header{text-align:center;padding:2.5rem 0 2rem;}
+.logo-wrap{width:96px;height:96px;margin:0 auto 1.25rem;position:relative;}
+.logo-orbit{position:absolute;inset:0;border-radius:50%;border:1.5px dashed rgba(245,166,35,.3);animation:orbit 18s linear infinite;}
+.logo-orbit::after{content:'⭐';position:absolute;top:-7px;left:50%;transform:translateX(-50%);font-size:.7rem;}
+@keyframes orbit{to{transform:rotate(360deg)}}
+.logo-core{position:absolute;inset:12px;border-radius:50%;background:linear-gradient(135deg,#1a2535,#243044);border:2px solid rgba(245,166,35,.4);display:flex;align-items:center;justify-content:center;font-size:2.5rem;animation:cpulse 4s ease-in-out infinite;}
+@keyframes cpulse{0%,100%{box-shadow:0 0 40px rgba(245,166,35,.2)}50%{box-shadow:0 0 65px rgba(245,166,35,.38)}}
+.header h1{font-family:'Cairo',sans-serif;font-size:1.55rem;font-weight:900;background:linear-gradient(135deg,var(--gold),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.4rem;line-height:1.4;}
+.header .tagline{font-size:.82rem;color:var(--text2);margin-bottom:1rem;}
+.researcher-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.25);border-radius:30px;padding:.45rem 1.1rem;font-size:.78rem;color:var(--gold);font-weight:700;}
+
+/* ─ WELCOME ─ */
+.welcome{background:linear-gradient(145deg,rgba(26,37,53,.98),rgba(36,48,68,.98));border:1px solid rgba(245,166,35,.2);border-radius:var(--radius);padding:2.5rem 2rem;margin-bottom:1.5rem;box-shadow:var(--glow);text-align:center;position:relative;overflow:hidden;}
+.welcome::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--teal),var(--gold),var(--purple));}
+.w-icon{font-size:3.2rem;margin-bottom:1rem;display:block;animation:float 3s ease-in-out infinite;}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.welcome h2{font-family:'Cairo',sans-serif;font-size:1.45rem;font-weight:900;margin-bottom:.75rem;line-height:1.4;}
+.welcome h2 em{font-style:normal;background:linear-gradient(135deg,var(--gold),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.welcome-desc{font-size:.9rem;color:var(--text2);line-height:1.8;margin-bottom:1.25rem;}
+.highlight-box{background:rgba(0,201,170,.07);border:1px solid rgba(0,201,170,.2);border-radius:var(--radius-sm);padding:.9rem 1.1rem;font-size:.875rem;color:#a0f0e0;font-weight:600;margin-bottom:1.25rem;line-height:1.7;}
+.journey-steps{display:flex;justify-content:center;gap:.5rem;flex-wrap:wrap;margin-bottom:1.25rem;}
+.jstep{display:flex;align-items:center;gap:.35rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:.35rem .85rem;font-size:.78rem;color:var(--text2);}
+.researcher-line{font-size:.75rem;color:var(--text3);margin-bottom:1.5rem;}
+
+/* ─ AGENT OVERVIEW (welcome screen) ─ */
+.agents-overview{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.75rem;margin:1.25rem 0;}
+.agent-card{border-radius:16px;padding:1.1rem .9rem;text-align:center;border:1px solid;}
+.ao-gold{background:rgba(245,166,35,.06);border-color:rgba(245,166,35,.25);}
+.ao-teal{background:rgba(0,201,170,.06);border-color:rgba(0,201,170,.25);}
+.ao-purple{background:rgba(139,92,246,.06);border-color:rgba(139,92,246,.25);}
+.ao-icon{font-size:1.6rem;margin-bottom:.4rem;}
+.ao-num{font-size:.62rem;font-weight:700;color:var(--text3);letter-spacing:.06em;text-transform:uppercase;margin-bottom:.3rem;}
+.ao-title{font-family:'Cairo',sans-serif;font-size:.82rem;font-weight:800;color:var(--text);line-height:1.4;margin-bottom:.4rem;}
+.ao-gold .ao-title{color:var(--gold2);}
+.ao-teal .ao-title{color:var(--teal2);}
+.ao-purple .ao-title{color:#c4b5fd;}
+.ao-desc{font-size:.72rem;color:var(--text2);line-height:1.5;margin-bottom:.5rem;}
+.ao-count{display:inline-block;font-size:.68rem;font-weight:700;padding:.18rem .55rem;border-radius:10px;background:rgba(255,255,255,.06);color:var(--text3);}
+
+/* ─ PROGRESS ─ */
+.progress-wrap{margin-bottom:2rem;}
+.progress-labels{display:flex;justify-content:space-between;margin-bottom:.6rem;}
+.pstep{font-size:.67rem;color:var(--text3);display:flex;flex-direction:column;align-items:center;gap:.25rem;font-weight:600;transition:color .3s;text-align:center;}
+.pdot{width:10px;height:10px;border-radius:50%;background:var(--ink3);transition:all .3s;}
+.pstep.active{color:var(--gold);}
+.pstep.active .pdot{background:var(--gold);box-shadow:0 0 8px rgba(245,166,35,.6);transform:scale(1.4);}
+.pstep.done{color:var(--teal);}
+.pstep.done .pdot{background:var(--teal);}
+.pbar{height:5px;background:var(--ink3);border-radius:3px;overflow:hidden;}
+.pfill{height:100%;background:linear-gradient(90deg,var(--teal),var(--gold));border-radius:3px;transition:width .7s cubic-bezier(.4,0,.2,1);}
+
+/* ─ SECTIONS ─ */
+.section{display:none;animation:fadeUp .4s ease;}
+.section.active{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+/* ─ CARD ─ */
+.card{background:linear-gradient(145deg,rgba(26,37,53,.98),rgba(20,30,45,.98));border:1px solid rgba(255,255,255,.07);border-radius:var(--radius);padding:1.75rem;margin-bottom:1.25rem;box-shadow:0 8px 32px rgba(0,0,0,.3);position:relative;overflow:hidden;}
+.card-accent{position:absolute;top:0;left:0;right:0;height:2px;}
+.ca-gold{background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+.ca-teal{background:linear-gradient(90deg,transparent,var(--teal),transparent);}
+.ca-purple{background:linear-gradient(90deg,transparent,var(--purple),transparent);}
+.ca-green{background:linear-gradient(90deg,transparent,var(--green),transparent);}
+.ca-rose{background:linear-gradient(90deg,transparent,var(--rose),transparent);}
+.card-title{font-family:'Cairo',sans-serif;font-size:1.1rem;font-weight:800;color:var(--text);margin-bottom:1.25rem;display:flex;align-items:center;gap:.65rem;}
+.cticon{width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+.ct-gold{background:rgba(245,166,35,.12);border:1px solid rgba(245,166,35,.2);}
+.ct-teal{background:rgba(0,201,170,.1);border:1px solid rgba(0,201,170,.2);}
+.ct-purple{background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.2);}
+.ct-green{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);}
+.ct-rose{background:rgba(244,63,94,.1);border:1px solid rgba(244,63,94,.2);}
+
+/* ─ GREETING ─ */
+.gbar{background:rgba(0,201,170,.07);border:1px solid rgba(0,201,170,.2);border-radius:12px;padding:.85rem 1rem;margin-bottom:1.25rem;font-size:.88rem;color:#7de8d8;font-weight:700;display:flex;align-items:center;gap:.6rem;}
+
+/* ─ FORM FIELDS ─ */
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin-bottom:.9rem;}
+.fg1{grid-template-columns:1fr;}
+.field{display:flex;flex-direction:column;gap:.35rem;}
+label{font-size:.78rem;color:var(--text2);font-weight:700;letter-spacing:.02em;}
+input,select{background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.1);border-radius:12px;padding:.7rem 1rem;color:var(--text);font-family:'Tajawal',sans-serif;font-size:.9rem;transition:all .2s;outline:none;width:100%;}
+input:focus,select:focus{border-color:var(--gold);background:rgba(245,166,35,.05);box-shadow:0 0 0 3px rgba(245,166,35,.1);}
+select option{background:#1a2535;}
+
+/* ─ QUIZ AREA ─ */
+.quiz-shell{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);border-radius:18px;padding:1.5rem;margin-bottom:1rem;}
+.phase-track{display:flex;align-items:center;gap:.6rem;margin-bottom:1.25rem;}
+.phase-label{font-size:.7rem;color:var(--text3);font-weight:700;white-space:nowrap;}
+.phase-dots{display:flex;gap:.3rem;flex:1;flex-wrap:wrap;}
+.phase-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.1);transition:all .35s;flex-shrink:0;}
+.phase-dot.done{background:var(--teal);}
+.phase-dot.active{background:var(--gold);box-shadow:0 0 6px rgba(245,166,35,.5);transform:scale(1.3);}
+.phase-counter{font-size:.7rem;color:var(--text3);font-weight:700;white-space:nowrap;}
+.q-wrap{margin-bottom:1rem;animation:fadeUp .35s ease;}
+.q-meta{font-size:.68rem;color:var(--teal);font-weight:700;margin-bottom:.4rem;display:flex;align-items:center;gap:.4rem;text-transform:uppercase;letter-spacing:.04em;}
+.q-text{font-size:.95rem;color:#d8f5f0;line-height:1.75;font-weight:600;background:rgba(0,201,170,.06);border:1px solid rgba(0,201,170,.12);border-radius:16px 16px 16px 4px;padding:1rem 1.2rem;}
+.r-wrap{margin-bottom:.75rem;animation:fadeUp .3s ease;}
+.r-bubble{background:rgba(245,166,35,.05);border:1px solid rgba(245,166,35,.1);border-radius:4px 16px 16px 16px;padding:.8rem 1rem;font-size:.845rem;color:#fde8c0;line-height:1.65;}
+.a-wrap{display:flex;justify-content:flex-start;margin-bottom:.6rem;animation:fadeUp .25s ease;}
+.a-bubble{background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.15);border-radius:16px 4px 16px 16px;padding:.65rem 1rem;font-size:.845rem;color:#e0d4ff;max-width:85%;}
+.opts-grid{display:flex;flex-direction:column;gap:.45rem;margin-top:.85rem;}
+.opt{background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.1);color:var(--text2);padding:.65rem 1.1rem;border-radius:12px;font-size:.855rem;font-family:'Tajawal',sans-serif;cursor:pointer;transition:all .2s;font-weight:600;text-align:right;line-height:1.5;}
+.opt:hover{background:rgba(0,201,170,.09);border-color:var(--teal);color:#c0f0e8;transform:translateX(-3px);}
+.opt.selected{background:rgba(0,201,170,.12);border-color:var(--teal);color:var(--teal2);}
+.opt:disabled{opacity:.35;cursor:not-allowed;transform:none;}
+.thinking{display:flex;gap:5px;padding:.75rem 1rem;background:rgba(0,201,170,.06);border:1px solid rgba(0,201,170,.1);border-radius:16px 16px 16px 4px;width:fit-content;align-items:center;margin-bottom:.75rem;}
+.thinking span{width:7px;height:7px;background:var(--teal);border-radius:50%;animation:td 1.2s infinite;}
+.thinking span:nth-child(2){animation-delay:.2s}.thinking span:nth-child(3){animation-delay:.4s}
+@keyframes td{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-6px);opacity:1}}
+.sys-msg{background:rgba(245,166,35,.04);border:1px solid rgba(245,166,35,.1);border-radius:12px;padding:.85rem 1.1rem;font-size:.86rem;color:#fde8c0;line-height:1.7;margin-bottom:.85rem;animation:fadeUp .3s ease;}
+
+/* ─ RESULTS ─ */
+.result-hero{background:linear-gradient(135deg,rgba(245,166,35,.08),rgba(0,201,170,.06));border:1px solid rgba(245,166,35,.2);border-radius:20px;padding:1.75rem;margin-bottom:1.25rem;text-align:center;position:relative;overflow:hidden;}
+.result-hero::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--teal),var(--gold),var(--purple));}
+.rh-label{font-size:.77rem;color:var(--text2);margin-bottom:.3rem;font-weight:700;}
+.rh-code{font-family:'Cairo',sans-serif;font-size:2.4rem;font-weight:900;color:var(--gold);margin-bottom:.2rem;letter-spacing:.15em;}
+.rh-name{font-family:'Cairo',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold2);margin-bottom:.6rem;}
+.rh-badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);border-radius:20px;padding:.35rem 1rem;font-size:.82rem;color:#86efac;font-weight:700;margin-bottom:.85rem;}
+.rh-desc{font-size:.875rem;color:var(--text2);line-height:1.75;max-width:520px;margin:0 auto;}
+.riasec-chart{margin:1rem 0;}
+.riasec-row{display:flex;align-items:center;gap:.75rem;margin:.4rem 0;}
+.riasec-code{font-size:.75rem;font-weight:800;color:var(--text2);width:20px;text-align:center;flex-shrink:0;}
+.riasec-bar-bg{flex:1;height:8px;background:rgba(255,255,255,.06);border-radius:4px;overflow:hidden;}
+.riasec-bar-fill{height:100%;border-radius:4px;transition:width 1.4s cubic-bezier(.4,0,.2,1);}
+.riasec-val{font-size:.72rem;color:var(--text2);font-weight:700;width:28px;text-align:left;flex-shrink:0;}
+.top3-grid{display:flex;gap:.65rem;margin:1rem 0;flex-wrap:wrap;}
+.top3-chip{flex:1;min-width:120px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:.85rem;text-align:center;transition:all .2s;}
+.top3-chip.rank-1{border-color:rgba(245,166,35,.35);background:rgba(245,166,35,.06);}
+.top3-chip.rank-2{border-color:rgba(0,201,170,.25);background:rgba(0,201,170,.04);}
+.top3-chip.rank-3{border-color:rgba(139,92,246,.2);background:rgba(139,92,246,.04);}
+.t3-rank{font-size:.65rem;color:var(--text3);font-weight:700;margin-bottom:.2rem;}
+.t3-letter{font-size:1.6rem;font-weight:900;font-family:'Cairo',sans-serif;margin-bottom:.15rem;}
+.rank-1 .t3-letter{color:var(--gold);}
+.rank-2 .t3-letter{color:var(--teal);}
+.rank-3 .t3-letter{color:var(--purple);}
+.t3-name{font-size:.72rem;color:var(--text2);font-weight:600;}
+.t3-score{font-size:.68rem;color:var(--text3);margin-top:.2rem;}
+.clarity-box{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:1rem 1.2rem;margin:.75rem 0;font-size:.855rem;color:var(--text2);line-height:1.7;}
+.clarity-box.clear{border-color:rgba(34,197,94,.2);background:rgba(34,197,94,.04);color:#86efac;}
+.clarity-box.mixed{border-color:rgba(245,166,35,.2);background:rgba(245,166,35,.04);color:#fde8c0;}
+.match-section{margin:1rem 0;}
+.match-row{margin:.6rem 0;}
+.match-lbl{display:flex;justify-content:space-between;font-size:.74rem;color:var(--text2);margin-bottom:.35rem;font-weight:700;}
+.match-bg{height:9px;background:rgba(255,255,255,.06);border-radius:5px;overflow:hidden;}
+.match-fill{height:100%;border-radius:5px;transition:width 1.4s cubic-bezier(.4,0,.2,1);}
+.mf-gold{background:linear-gradient(90deg,var(--gold),var(--gold2));}
+.mf-teal{background:linear-gradient(90deg,var(--teal),var(--teal2));}
+.mf-purple{background:linear-gradient(90deg,var(--purple),#a78bfa);}
+.mf-green{background:linear-gradient(90deg,var(--green),#4ade80);}
+.maturity-breakdown{display:grid;grid-template-columns:1fr 1fr;gap:.55rem;margin-top:.75rem;}
+.mb-item{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:.6rem .85rem;}
+.mb-item.strength{border-color:rgba(34,197,94,.15);background:rgba(34,197,94,.04);}
+.mb-item.needs{border-color:rgba(244,63,94,.12);background:rgba(244,63,94,.03);}
+.mb-label{font-size:.68rem;color:var(--text3);margin-bottom:.15rem;font-weight:700;}
+.mb-val{font-size:.82rem;color:var(--text);font-weight:600;}
+.mb-val.good{color:#86efac;}
+.mb-val.warn{color:#fda4af;}
+.jobs-grid{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;margin-top:.75rem;}
+.job-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:.85rem 1rem;transition:all .2s;}
+.job-card:hover{background:rgba(0,201,170,.06);border-color:rgba(0,201,170,.2);transform:translateY(-2px);}
+.job-title{font-size:.855rem;font-weight:700;color:var(--text);margin-bottom:.25rem;}
+.job-demand{font-size:.7rem;color:var(--teal);font-weight:600;}
+.job-sector{font-size:.67rem;color:var(--text3);}
+.specs-list{display:flex;flex-direction:column;gap:.45rem;margin-top:.75rem;}
+.spec-item{display:flex;align-items:center;gap:.65rem;background:rgba(139,92,246,.06);border:1px solid rgba(139,92,246,.12);border-radius:12px;padding:.65rem .9rem;}
+.spec-icon{font-size:1rem;flex-shrink:0;}
+.spec-text{font-size:.845rem;color:#c4b5fd;font-weight:600;}
+.sectors-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.55rem;margin-top:.75rem;}
+.sector-chip{background:rgba(0,201,170,.06);border:1px solid rgba(0,201,170,.15);border-radius:12px;padding:.65rem .7rem;text-align:center;font-size:.78rem;color:#a0f0e0;font-weight:600;line-height:1.4;}
+.summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:.55rem;margin-top:.75rem;}
+.si{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:.7rem .9rem;}
+.sl{font-size:.66rem;color:var(--text3);margin-bottom:.2rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;}
+.sv{font-size:.875rem;color:var(--gold);font-weight:800;}
+.action-box{background:linear-gradient(135deg,rgba(0,201,170,.08),rgba(0,240,204,.04));border:1px solid rgba(0,201,170,.25);border-radius:16px;padding:1.1rem 1.3rem;margin:.75rem 0;}
+.action-title{font-size:.8rem;color:var(--teal);font-weight:800;margin-bottom:.5rem;display:flex;align-items:center;gap:.4rem;}
+.action-text{font-size:.875rem;color:#b0f0e8;line-height:1.7;}
+.disclaimer{background:rgba(245,166,35,.04);border:1px solid rgba(245,166,35,.12);border-radius:14px;padding:1rem 1.2rem;font-size:.82rem;color:#fde8a0;line-height:1.7;margin:.75rem 0;}
+.divider{height:1px;background:linear-gradient(90deg,transparent,rgba(245,166,35,.15),transparent);margin:1.25rem 0;}
+.section-sub{font-size:.78rem;color:var(--text2);margin-bottom:.85rem;line-height:1.6;}
+.tag{display:inline-block;font-size:.68rem;font-weight:700;padding:.2rem .6rem;border-radius:10px;margin-right:.3rem;}
+.tag-teal{background:rgba(0,201,170,.1);color:var(--teal);border:1px solid rgba(0,201,170,.2);}
+.tag-gold{background:rgba(245,166,35,.1);color:var(--gold);border:1px solid rgba(245,166,35,.2);}
+
+/* ─ STAGE LABEL ─ */
+.stage-label{font-family:'Cairo',sans-serif;font-size:.72rem;font-weight:800;color:var(--text3);text-transform:uppercase;letter-spacing:.1em;padding:.35rem 0 .75rem;border-bottom:1px solid rgba(255,255,255,.05);margin-bottom:1.25rem;}
+
+/* ─ MEASUREMENT NOTICE ─ */
+.measurement-notice{display:flex;align-items:flex-start;gap:.85rem;background:rgba(0,201,170,.06);border:1px solid rgba(0,201,170,.2);border-radius:16px;padding:1.1rem 1.25rem;margin-bottom:1.5rem;font-size:.855rem;color:#a0f0e0;line-height:1.7;}
+.mn-icon{font-size:1.4rem;flex-shrink:0;margin-top:.1rem;}
+.measurement-notice strong{color:var(--teal2);display:block;margin-bottom:.2rem;}
+
+/* ─ BUTTONS ─ */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.82rem 2rem;border-radius:14px;font-family:'Cairo',sans-serif;font-size:.95rem;font-weight:800;cursor:pointer;border:none;transition:all .2s;text-decoration:none;}
+.btn-gold{background:linear-gradient(135deg,var(--gold),#c87a10);color:#1a0d00;box-shadow:0 6px 20px rgba(245,166,35,.3);}
+.btn-gold:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(245,166,35,.45);}
+.btn-teal{background:linear-gradient(135deg,var(--teal),#009982);color:#001a16;font-size:1rem;padding:.9rem 2rem;width:100%;margin-top:1.25rem;border-radius:16px;box-shadow:0 6px 20px rgba(0,201,170,.3);}
+.btn-teal:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,201,170,.45);}
+.btn-outline{background:transparent;border:1.5px solid rgba(245,166,35,.3);color:var(--gold);padding:.7rem 1.5rem;border-radius:12px;font-size:.88rem;}
+.btn-outline:hover{background:rgba(245,166,35,.06);}
+.btn-row{display:flex;gap:.75rem;margin-top:1.25rem;justify-content:flex-end;flex-wrap:wrap;}
+
+/* ─ FOOTER ─ */
+.footer{text-align:center;margin-top:3rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.05);font-size:.75rem;color:var(--text3);line-height:2;}
+.footer strong{color:var(--gold);}
+
+/* ─ RESPONSIVE ─ */
+@media(max-width:580px){
+  .fg,.jobs-grid,.sectors-grid,.summary-grid,.maturity-breakdown,.top3-grid,.agents-overview{grid-template-columns:1fr}
+  .header h1{font-size:1.3rem}
+  .rh-code{font-size:2rem}
+}
+
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- HEADER -->
+<div class="header">
+  <div class="logo-wrap">
+    <div class="logo-orbit"></div>
+    <div class="logo-core">🔬</div>
+  </div>
+  <h1>نموذج قياس جاهزية القرار المهني</h1>
+  <p class="tagline">نموذج تفاعلي متعدد الوكلاء · مستوحى من نظرية هولاند ونموذج سوبر · سياق رؤية 2030</p>
+  <div class="researcher-badge">👩‍🔬 الباحثة: إيمان عبد العزيز الردادي</div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     المرحلة الأولى: تعريف النموذج
+     ══════════════════════════════════════════ -->
+<div class="welcome" id="welcome-card">
+  <span class="w-icon">🔬</span>
+  <h2><em>نموذج تفاعلي متعدد الوكلاء</em><br>لقياس جاهزية القرار المهني</h2>
+
+  <p class="welcome-desc">هذا نموذج تفاعلي يهدف إلى تحليل كيفية بناء الطالب لقراره المهني، وتقدير مستوى جاهزيته لاتخاذ القرار، وليس اقتراح تخصصات أو مسارات بشكل مباشر.</p>
+
+  <div class="highlight-box">💬 عزيزتي الطالبة، عزيزي الطالب — الرجاء قراءة الخيارات بعناية ثم اختيار ما يناسبك. لا توجد إجابة صح أو خطأ.</div>
+
+  <!-- أبعاد القياس الثلاثة -->
+  <div class="agents-overview">
+    <div class="agent-card ao-gold">
+      <div class="ao-icon">⚖️</div>
+      <div class="ao-num">البُعد الأول</div>
+      <div class="ao-title">اتساق التفضيلات</div>
+      <div class="ao-desc">يقيس مدى ثبات اختيارات الطالب مع تدرّج الأسئلة</div>
+      <div class="ao-count">12 سؤال</div>
+    </div>
+    <div class="agent-card ao-teal">
+      <div class="ao-icon">🧩</div>
+      <div class="ao-num">البُعد الثاني</div>
+      <div class="ao-title">الإسناد الذاتي</div>
+      <div class="ao-desc">يقيس هل القرار مبني على فهم الطالب لنفسه وقدراته</div>
+      <div class="ao-count">7 أسئلة</div>
+    </div>
+    <div class="agent-card ao-purple">
+      <div class="ao-icon">🔭</div>
+      <div class="ao-num">البُعد الثالث</div>
+      <div class="ao-title">مرجعيات القرار</div>
+      <div class="ao-desc">يقيس هل القرار يعتمد على الذات أو على عوامل خارجية</div>
+      <div class="ao-count">6 أسئلة</div>
+    </div>
+  </div>
+
+  <p class="researcher-line">الباحثة: إيمان عبد العزيز الردادي</p>
+  <button class="btn btn-gold" onclick="APP.startJourney()">ابدأ التقييم ←</button>
+</div>
+
+<!-- PROGRESS BAR -->
+<div class="progress-wrap" id="progress-wrap" style="display:none;">
+  <div class="progress-labels">
+    <span class="pstep" id="s1l"><span class="pdot"></span>البيانات</span>
+    <span class="pstep" id="s2l"><span class="pdot"></span>التفضيلات</span>
+    <span class="pstep" id="s3l"><span class="pdot"></span>الإسناد</span>
+    <span class="pstep" id="s4l"><span class="pdot"></span>المرجعيات</span>
+    <span class="pstep" id="s5l"><span class="pdot"></span>النتائج</span>
+  </div>
+  <div class="pbar"><div class="pfill" id="pf" style="width:20%"></div></div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     المرحلة الثانية: إدخال البيانات
+     ══════════════════════════════════════════ -->
+<div class="section" id="section-1">
+  <div class="stage-label">المرحلة الثانية · إدخال البيانات</div>
+  <div class="card">
+    <div class="card-accent ca-gold"></div>
+    <div class="card-title"><div class="cticon ct-gold">📝</div>البيانات الأساسية</div>
+    <div class="gbar" id="gbar" style="display:none;"><span>✨</span><span id="gtxt"></span></div>
+    <div class="fg">
+      <div class="field"><label>الاسم الكامل</label><input type="text" id="fn" placeholder="اكتب اسمك" oninput="APP.updateGreeting()"></div>
+      <div class="field"><label>الجنس</label>
+        <select id="fg2" onchange="APP.updateGreeting()">
+          <option value="">اختر</option>
+          <option value="طالبة">طالبة</option>
+          <option value="طالب">طالب</option>
+        </select>
+      </div>
+    </div>
+    <div class="fg">
+      <div class="field"><label>المدرسة</label><input type="text" id="fsc" placeholder="اسم المدرسة"></div>
+      <div class="field"><label>الصف الدراسي</label>
+        <select id="fgr">
+          <option value="">اختر</option>
+          <option>أول ثانوي</option><option>ثاني ثانوي</option><option>ثالث ثانوي</option>
+        </select>
+      </div>
+    </div>
+    <div class="fg fg1">
+      <div class="field"><label>المسار الدراسي</label>
+        <select id="fmj">
+          <option value="">اختر</option>
+          <option>مسار عام</option><option>مسار صحة وحياة</option>
+          <option>مسار هندسة</option><option>مسار شريعة</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="btn-row"><button class="btn btn-gold" onclick="APP.goToSection(2)">بدء التقييم ←</button></div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     المرحلة الثالثة: التفاعل مع الوكلاء
+     ══════════════════════════════════════════ -->
+
+<!-- S2: وكيل اتساق التفضيلات -->
+<div class="section" id="section-2">
+  <div class="stage-label">المرحلة الثالثة · التفاعل مع الوكلاء</div>
+  <div class="card">
+    <div class="card-accent ca-gold"></div>
+    <div class="card-title"><div class="cticon ct-gold">⚖️</div>وكيل اتساق التفضيلات <span class="tag tag-gold">12 سؤال</span></div>
+    <p class="section-sub" style="margin-bottom:.75rem;">يقيس هذا الوكيل مدى ثبات اختيارات الطالب وتناسقها عبر الأبعاد الستة لنموذج هولاند. النتيجة تعكس درجة اتساق التفضيلات لا التوصية بمسار بعينه.</p>
+    <div class="quiz-shell" id="quiz-shell-2"></div>
+  </div>
+</div>
+
+<!-- S3: وكيل الإسناد الذاتي -->
+<div class="section" id="section-3">
+  <div class="card">
+    <div class="card-accent ca-teal"></div>
+    <div class="card-title"><div class="cticon ct-teal">🧩</div>وكيل الإسناد الذاتي <span class="tag tag-teal">7 أسئلة</span></div>
+    <p class="section-sub" style="margin-bottom:.75rem;">يقيس هذا الوكيل هل القرار المهني مبني على وعي الطالب بنفسه وقدراته الحقيقية، وهو مؤشر على عمق الجاهزية.</p>
+    <div class="quiz-shell" id="quiz-shell-3"></div>
+  </div>
+</div>
+
+<!-- S4: وكيل مرجعيات القرار -->
+<div class="section" id="section-4">
+  <div class="card">
+    <div class="card-accent ca-purple"></div>
+    <div class="card-title"><div class="cticon ct-purple">🔭</div>وكيل مرجعيات القرار <span class="tag tag-teal">6 أسئلة</span></div>
+    <p class="section-sub" style="margin-bottom:.75rem;">يقيس هذا الوكيل هل مرجعية القرار ذاتية (تنبع من الطالب نفسه) أم خارجية (أسرة، شيوع التخصص، توقعات المجتمع).</p>
+    <div class="quiz-shell" id="quiz-shell-4"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     المرحلة الرابعة: عرض النتائج (القياس)
+     المرحلة الخامسة: التفسير وربط سوق العمل
+     ══════════════════════════════════════════ -->
+<div class="section" id="section-5">
+
+  <!-- تنبيه قبل النتائج -->
+  <div class="measurement-notice">
+    <span class="mn-icon">📐</span>
+    <div>
+      <strong>تنبيه قبل النتائج</strong><br>
+      هذا النموذج يهدف إلى قياس جاهزية اتخاذ القرار المهني، ولا يُعد بديلاً عن الإرشاد المهني المباشر. النتائج أدناه تحليلية وليست أحكاماً نهائية.
+    </div>
+  </div>
+
+  <!-- المرحلة الرابعة: نتائج القياس -->
+  <div class="stage-label">المرحلة الرابعة · عرض النتائج</div>
+
+  <!-- نمط القرار -->
+  <div class="card" id="card-hero">
+    <div class="card-accent ca-gold"></div>
+    <div class="card-title"><div class="cticon ct-gold">📐</div>نمط القرار المهني المُستخلص</div>
+    <div class="result-hero">
+      <div class="rh-label" id="rh-label"></div>
+      <div class="rh-code" id="rh-code"></div>
+      <div class="rh-name" id="rh-name"></div>
+      <div class="rh-badge" id="rh-badge"></div>
+      <p class="rh-desc" id="rh-desc"></p>
+    </div>
+    <div class="card-title" style="margin-top:1.25rem;margin-bottom:.75rem;"><div class="cticon ct-gold">🏅</div>أعلى 3 أنماط في التفضيلات</div>
+    <div class="top3-grid" id="top3-grid"></div>
+    <div id="clarity-box"></div>
+    <div class="card-title" style="margin-top:1.25rem;margin-bottom:.75rem;font-size:.95rem;"><div class="cticon ct-gold" style="width:30px;height:30px;">📊</div>توزيع الدرجات على الأنماط الستة</div>
+    <div class="riasec-chart" id="riasec-chart"></div>
+  </div>
+
+  <!-- مؤشرات الجاهزية -->
+  <div class="card">
+    <div class="card-accent ca-teal"></div>
+    <div class="card-title"><div class="cticon ct-teal">📋</div>مؤشرات جاهزية القرار المهني</div>
+    <p class="section-sub">هذه الأشرطة تعكس نتائج القياس عبر الأبعاد الثلاثة، وليست تقييماً للكفاءة الشخصية.</p>
+    <div class="match-section" id="maturity-bars"></div>
+    <div class="card-title" style="margin-top:1.25rem;margin-bottom:.75rem;font-size:.92rem;"><div class="cticon ct-teal" style="width:30px;height:30px;">💡</div>مؤشرات الاتساق والدعم المطلوب</div>
+    <div class="maturity-breakdown" id="maturity-breakdown"></div>
+    <div id="maturity-message" style="margin-top:.85rem;font-size:.855rem;color:var(--text2);line-height:1.7;padding:.85rem 1rem;background:rgba(255,255,255,.03);border-radius:12px;border:1px solid rgba(255,255,255,.06);"></div>
+  </div>
+
+  <!-- تفسير نمط القرار -->
+  <div class="card">
+    <div class="card-accent ca-purple"></div>
+    <div class="card-title"><div class="cticon ct-purple">🧠</div>تفسير تحليلي لنمط اتخاذ القرار</div>
+    <div id="analysis-text" style="font-size:.88rem;color:var(--text2);line-height:1.8;background:rgba(139,92,246,.04);border:1px solid rgba(139,92,246,.12);border-radius:14px;padding:1.1rem 1.25rem;"></div>
+  </div>
+
+  <!-- المرحلة الخامسة: ربط سوق العمل -->
+  <div class="stage-label">المرحلة الخامسة · تفسير النتائج وربطها بسوق العمل</div>
+
+  <!-- ارتباط النتائج بسوق العمل -->
+  <div class="card">
+    <div class="card-accent ca-teal"></div>
+    <div class="card-title"><div class="cticon ct-teal">🏢</div>ارتباط النتائج بسوق العمل</div>
+    <p class="section-sub">نتائجك تشير إلى تقاطع مع القطاعات التالية — هذا تحليل للتوافق لا توصية مباشرة بالالتحاق بها.</p>
+    <div class="sectors-grid" id="sectors-grid"></div>
+  </div>
+
+  <!-- اتجاهات سوق العمل المرتبطة -->
+  <div class="card">
+    <div class="card-accent ca-teal"></div>
+    <div class="card-title"><div class="cticon ct-teal">💼</div>اتجاهات سوق العمل المرتبطة بنتائجك</div>
+    <p class="section-sub">هذه الأدوار المهنية تتقاطع مع نمط قرارك الحالي — وليست قائمة وظائف موصى بها.</p>
+    <div class="jobs-grid" id="jobs-grid"></div>
+  </div>
+
+  <!-- مجالات تتوافق مع نمط القرار -->
+  <div class="card">
+    <div class="card-accent ca-purple"></div>
+    <div class="card-title"><div class="cticon ct-purple">🎓</div>مجالات تتوافق مع نمط القرار الحالي</div>
+    <p class="section-sub">هذه المجالات الأكاديمية تتقاطع مع نتائج القياس — مشاركتها مع المرشد المهني تُثري الحوار الإرشادي.</p>
+    <div class="specs-list" id="specs-list"></div>
+  </div>
+
+  <!-- تحليل القرار -->
+  <div class="card">
+    <div class="card-accent ca-green"></div>
+    <div class="card-title"><div class="cticon ct-green">🔍</div>تحليل القرار</div>
+    <div class="action-box">
+      <div class="action-title">📌 قراءة تحليلية</div>
+      <div class="action-text" id="action-text"></div>
+    </div>
+  </div>
+
+  <!-- ملخص نتائج القياس -->
+  <div class="card">
+    <div class="card-accent ca-gold"></div>
+    <div class="card-title"><div class="cticon ct-gold">📋</div>ملخص نتائج القياس</div>
+    <div class="summary-grid" id="summary-grid"></div>
+    <div class="divider"></div>
+    <div class="disclaimer">
+      ⚠️ <strong>تنبيه مهم:</strong> هذا النموذج يهدف إلى قياس جاهزية اتخاذ القرار المهني، ولا يُعد بديلاً عن الإرشاد المهني المباشر. النتائج أدناه تحليلية وإرشادية، وليست أحكاماً نهائية على قدرات الطالب أو مساره المستقبلي.
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-outline" onclick="window.print()">🖨️ طباعة النتائج</button>
+      <button class="btn btn-teal" onclick="APP.submitResults()">📤 إرسال النتائج للمرشد</button>
+    </div>
+  </div>
+
+</div><!-- end section-5 -->
+
+<div class="footer">
+  نموذج قياس جاهزية القرار المهني · نموذج تفاعلي متعدد الوكلاء<br>
+  <strong>الباحثة: إيمان عبد العزيز الردادي</strong>
+</div>
+</div>
+
+<script>
+/* ══════════════════════════════════════════════
+   script.js — CareerCompass-SA
+   نموذج تفاعلي متعدد الوكلاء لقياس جاهزية القرار المهني
+   الباحثة: إيمان عبد العزيز الردادي
+   ══════════════════════════════════════════════ */
+
+
+const CONFIG = {
+  // ── Google Forms ──────────────────────────────
+  FORMS_URL: 'https://docs.google.com/forms/d/e/1FAIpQLSeKWPmTI_mmf3T-hCxtEDzJMiVaSZi0NkwCsiJjnG4u6eLRRQ/viewform',
+  FORMS_ENTRIES: {
+    name:           'entry.33593307',
+    gender:         'entry.891465232',
+    school:         'entry.540045223',
+    grade:          'entry.1657832647',
+    major:          'entry.1270070855',
+    hollandCode:    'entry.1655285712',
+    careerPattern:  'entry.957526605',
+    maturityLevel:  'entry.837439434',
+    maturityPercent:'entry.789864144',
+    sector:         'entry.1712174354',
+    ambition:       'entry.1870465729',
+    driver:         'entry.941677160'
+  },
+
+  // ── API (جاهز للربط لاحقاً) ───────────────────
+  // لربط الـ API: ضع الرابط هنا وغيّر USE_API إلى true
+  USE_API: false,
+  API_ENDPOINT: '', // مثال: 'https://api.anthropic.com/v1/messages'
+  API_KEY: '',      // تحذير: لا تضع الـ key مباشرة في production
+
+  // ── إعدادات عامة ─────────────────────────────
+  PROTOTYPE_MODE: true,
+  VERSION: '2.0-prototype'
+};
+
+
+
+/*
+ * ══════════════════════════════════════════════════
+ *  QUESTIONS BANK — بنك الأسئلة
+ * ══════════════════════════════════════════════════
+ *
+ *  كل سؤال يحتوي:
+ *    text      : نص السؤال
+ *    type      : نوع السؤال (preference / behavior / situation / environment / decision)
+ *    meta      : العنوان الصغير فوق السؤال
+ *    options[] : الخيارات
+ *      label     : نص الخيار
+ *      scores    : تأثيره على الأنماط { R,I,A,S,E,C }
+ *      matScore  : تأثيره على الجاهزية (للأسئلة المناسبة)
+ *      reflection: رد المساعد بعد الاختيار (قصير وذكي)
+ */
+
+// ──────────────────────────────────────────────────
+//  SECTION A: أسئلة هولاند RIASEC — 12 سؤال
+//  تغطي الأنماط الستة بتوازن (2 سؤال لكل نمط)
+// ──────────────────────────────────────────────────
+const HOLLAND_QUESTIONS = [
+
+  // ─ Q1: تفضيل — يكشف R vs I ─
+  {
+    text: 'عندك فرصة لمشروع شخصي بدون قيود، ماذا تختار؟',
+    type: 'preference',
+    meta: 'تفضيل · النمط الأساسي',
+    options: [
+      { label: 'أبني أو أصنع شيئاً بيدي',        scores:{R:3}, reflection:'الميل للصنع والبناء يرتبط بالنمط الواقعي — وهو ما يُميّز المهندسين والتقنيين.' },
+      { label: 'أبحث وأحلل مسألة تشغل تفكيري',   scores:{I:3}, reflection:'الفضول التحليلي سمة واضحة في النمط التحقيقي — قوة حقيقية في المسارات العلمية.' },
+      { label: 'أصنع شيئاً إبداعياً أو فنياً',   scores:{A:3}, reflection:'الدافع الإبداعي يرتبط بالنمط الفني — وهو أساس مسارات التصميم والفنون.' },
+      { label: 'أنظم فعالية أو نشاطاً لمجموعة',  scores:{S:2,E:1}, reflection:'الميل للتنظيم الاجتماعي يجمع بين النمطين الاجتماعي والمغامر.' }
+    ]
+  },
+
+  // ─ Q2: سلوك — يكشف S vs E ─
+  {
+    text: 'في مجموعة دراسية تواجه خلافاً، ما الذي تفعله عادةً؟',
+    type: 'behavior',
+    meta: 'سلوك · التعامل مع الآخرين',
+    options: [
+      { label: 'أحاول التوسط والحفاظ على الجو الإيجابي', scores:{S:3}, reflection:'القدرة على التوسط وبناء الانسجام سمة النمط الاجتماعي.' },
+      { label: 'أتولى القيادة وأوجّه الحل',              scores:{E:3}, reflection:'التولي للقيادة في المواقف الصعبة سمة النمط المغامر.' },
+      { label: 'أبقى محايداً وأنجز حصتي',               scores:{C:2,R:1}, reflection:'التركيز على الإنجاز الفردي يرتبط بالنمطين التقليدي والواقعي.' },
+      { label: 'أطرح فكرة جديدة لحل الخلاف بطريقة مختلفة', scores:{I:1,A:2}, reflection:'البحث عن حلول مبتكرة يجمع بين التحقيقي والفني.' }
+    ]
+  },
+
+  // ─ Q3: بيئة — يكشف R vs C ─
+  {
+    text: 'أي بيئة عمل تجعلك تشعر بأنك في مكانك الصحيح؟',
+    type: 'environment',
+    meta: 'بيئة · مكان العمل المفضل',
+    options: [
+      { label: 'ورشة أو مختبر مليء بالأجهزة والأدوات', scores:{R:3},   reflection:'البيئة التقنية العملية بيئة النمط الواقعي.' },
+      { label: 'مكتب منظم بمهام واضحة وجداول محددة',   scores:{C:3},   reflection:'الوضوح والتنظيم بيئة النمط التقليدي.' },
+      { label: 'فضاء مفتوح وإبداعي بلا قواعد صارمة',   scores:{A:3},   reflection:'الانفتاح الإبداعي يناسب النمط الفني.' },
+      { label: 'أي مكان طالما أعمل مع أناس محفّزين',   scores:{S:2,E:1}, reflection:'الأولوية للبيئة الإنسانية سمة الاجتماعي والمغامر.' }
+    ]
+  },
+
+  // ─ Q4: موقف — يكشف I vs A ─
+  {
+    text: 'قُدّم لك موضوع جديد لم تعرفه من قبل. ما أول ما تفعله؟',
+    type: 'situation',
+    meta: 'موقف · أسلوب التعلم',
+    options: [
+      { label: 'أبحث عنه وأقرأ كل ما يتعلق به',      scores:{I:3},   reflection:'التحقيق المعمّق والبحث الذاتي سمة النمط التحقيقي.' },
+      { label: 'أجرّب أفكاراً عملية مباشرة',           scores:{R:2,A:1}, reflection:'التعلم بالتجربة المباشرة يجمع الواقعي والفني.' },
+      { label: 'أسأل أشخاصاً خبراء في الموضوع',       scores:{S:2,E:1}, reflection:'التعلم عبر الناس والعلاقات سمة الاجتماعي.' },
+      { label: 'أحاول إيجاد زاوية إبداعية أو رؤية مختلفة', scores:{A:3}, reflection:'رؤية الأشياء بزاوية مغايرة سمة النمط الفني.' }
+    ]
+  },
+
+  // ─ Q5: تفضيل — يكشف R vs I (تعمّق) ─
+  {
+    text: 'أي من هذه المهام يبدو الأكثر إرضاءً لك؟',
+    type: 'preference',
+    meta: 'تفضيل · طبيعة المهمة',
+    options: [
+      { label: 'إصلاح جهاز معطل أو نظام متعطل',         scores:{R:3},   reflection:'الرضا في حل المشكلات التقنية الملموسة سمة الواقعي.' },
+      { label: 'اكتشاف سبب ظاهرة غير مفهومة',           scores:{I:3},   reflection:'التحليل والاكتشاف محرّك النمط التحقيقي.' },
+      { label: 'إقناع شخص آخر بفكرتك',                  scores:{E:2,S:1}, reflection:'القدرة على الإقناع سمة النمط المغامر.' },
+      { label: 'تنظيم ملفات وبيانات بدقة وترتيب',       scores:{C:3},   reflection:'الرضا في الدقة والتنظيم سمة النمط التقليدي.' }
+    ]
+  },
+
+  // ─ Q6: سلوك — يكشف A vs S ─
+  {
+    text: 'حين تنتهي من مهمة ما، ما الذي يجعلك تشعر أنها ناجحة؟',
+    type: 'behavior',
+    meta: 'سلوك · معيار النجاح',
+    options: [
+      { label: 'أن أرى أثرها الجميل أو قيمتها الإبداعية', scores:{A:3},   reflection:'الجماليات والإبداع معيار النجاح عند النمط الفني.' },
+      { label: 'أن تُحدث فرقاً حقيقياً في حياة شخص آخر', scores:{S:3},   reflection:'الأثر الإنساني معيار النمط الاجتماعي.' },
+      { label: 'أن تكون دقيقة وخالية من الأخطاء',          scores:{C:3},   reflection:'الدقة والكمال معيار النمط التقليدي.' },
+      { label: 'أن تحقق نتيجة قابلة للقياس',              scores:{E:2,I:1}, reflection:'النتائج الملموسة تجمع بين المغامر والتحقيقي.' }
+    ]
+  },
+
+  // ─ Q7: قرار — يكشف E vs C ─
+  {
+    text: 'طُلب منك قيادة مشروع جديد في المدرسة. ما أول خطواتك؟',
+    type: 'decision',
+    meta: 'قرار · أسلوب القيادة',
+    options: [
+      { label: 'أضع خطة تفصيلية وأوزع المهام بدقة',      scores:{C:2,E:1}, reflection:'التخطيط التفصيلي المنظم يجمع التقليدي بالمغامر.' },
+      { label: 'أحمّس الفريق وأنطلق بأفكار جريئة',       scores:{E:3},   reflection:'الإلهام والجرأة في البدء سمة النمط المغامر.' },
+      { label: 'أستمع للجميع ثم أبني رؤية مشتركة',        scores:{S:3},   reflection:'الإنصات وبناء التوافق سمة النمط الاجتماعي.' },
+      { label: 'أبحث أولاً في تجارب مشاريع مشابهة',      scores:{I:2,C:1}, reflection:'البحث قبل القرار يجمع التحقيقي والتقليدي.' }
+    ]
+  },
+
+  // ─ Q8: بيئة — يكشف S vs I ─
+  {
+    text: 'أي من هذه الوظائف تستهويك أكثر؟',
+    type: 'environment',
+    meta: 'بيئة · الوظيفة المفضلة',
+    options: [
+      { label: 'طبيب أو ممرض يتعامل مع المرضى يومياً',  scores:{S:3},   reflection:'التعامل الإنساني المباشر بيئة النمط الاجتماعي.' },
+      { label: 'مهندس برمجيات يبني أنظمة معقدة',         scores:{R:2,I:1}, reflection:'البرمجة والأنظمة تجمع الواقعي والتحقيقي.' },
+      { label: 'محلل بيانات يستخلص رؤى من الأرقام',     scores:{I:3,C:1}, reflection:'تحليل البيانات سمة التحقيقي مع لمسة التقليدي.' },
+      { label: 'مدير تسويق يضع استراتيجيات وإعلانات',   scores:{E:3},   reflection:'التسويق والاستراتيجية بيئة النمط المغامر.' }
+    ]
+  },
+
+  // ─ Q9: موقف — يكشف A vs R ─
+  {
+    text: 'يُطلب منك تقديم عرض عن موضوع دراسي. كيف تُقدّمه؟',
+    type: 'situation',
+    meta: 'موقف · أسلوب التعبير',
+    options: [
+      { label: 'بتصميم إبداعي وعرض بصري مميز',          scores:{A:3},   reflection:'الاهتمام بالجماليات والتصميم سمة النمط الفني.' },
+      { label: 'ببيانات وأرقام وتحليل منهجي دقيق',       scores:{I:2,C:1}, reflection:'الدقة التحليلية تجمع التحقيقي والتقليدي.' },
+      { label: 'بقصة وسرد يشد الجمهور عاطفياً',         scores:{S:2,E:1}, reflection:'السرد الإنساني يجمع الاجتماعي والمغامر.' },
+      { label: 'بنموذج عملي أو تجربة حية أمام الجمهور', scores:{R:3},   reflection:'التجسيد العملي سمة النمط الواقعي.' }
+    ]
+  },
+
+  // ─ Q10: تفضيل — يكشف C vs A ─
+  {
+    text: 'لديك يوم إجازة كامل. ماذا تختار؟',
+    type: 'preference',
+    meta: 'تفضيل · وقت الفراغ',
+    options: [
+      { label: 'أنظّم غرفتي أو ملفاتي وأخطط للأسبوع',   scores:{C:3},   reflection:'الرغبة في التنظيم في وقت الراحة سمة متجذّرة في التقليدي.' },
+      { label: 'أرسم أو أكتب أو أستمع للموسيقى',         scores:{A:3},   reflection:'الانجذاب للفنون في الراحة يكشف النمط الفني بوضوح.' },
+      { label: 'أخرج مع أصدقائي أو أنظم لقاءً',          scores:{S:2,E:1}, reflection:'الراحة مع الآخرين سمة الاجتماعي والمغامر.' },
+      { label: 'أقرأ كتاباً أو أتابع موضوعاً يشغل تفكيري', scores:{I:3}, reflection:'البحث والقراءة في الراحة سمة النمط التحقيقي.' }
+    ]
+  },
+
+  // ─ Q11: سلوك — يكشف E vs I ─
+  {
+    text: 'لديك فكرة مشروع ريادي مثيرة. ما الذي تفعله؟',
+    type: 'behavior',
+    meta: 'سلوك · من الفكرة للتنفيذ',
+    options: [
+      { label: 'أبدأ تنفيذها فوراً وأتعلم من الأخطاء',   scores:{E:3},   reflection:'الإقدام والتنفيذ السريع سمة النمط المغامر.' },
+      { label: 'أبحث وأدرس السوق قبل أي خطوة',           scores:{I:2,C:1}, reflection:'التمحيص قبل القرار يجمع التحقيقي والتقليدي.' },
+      { label: 'أناقشها مع أصدقاء وأطور الفكرة بالحوار', scores:{S:2,E:1}, reflection:'بناء الفكرة بالتشاور يجمع الاجتماعي والمغامر.' },
+      { label: 'أصمم نموذجاً أولياً وأختبره عملياً',     scores:{R:2,I:1}, reflection:'النموذج العملي يجمع الواقعي والتحقيقي.' }
+    ]
+  },
+
+  // ─ Q12: قرار — يكشف R vs S (ختامي) ─
+  {
+    text: 'مجتمعك يحتاج تحسيناً. كيف تُسهم؟',
+    type: 'decision',
+    meta: 'قرار · إسهامك في المجتمع',
+    options: [
+      { label: 'ببناء مشروع تقني يحل مشكلة عملية',       scores:{R:3,E:1}, reflection:'الحلول التقنية العملية تجمع الواقعي والمغامر.' },
+      { label: 'بتعليم الآخرين مهارة أو معرفة',           scores:{S:3},   reflection:'التعليم والإرشاد سمة النمط الاجتماعي بامتياز.' },
+      { label: 'بإنتاج عمل فني أو إبداعي يُلهم',         scores:{A:3},   reflection:'الإلهام عبر الفن سمة النمط الفني.' },
+      { label: 'بقيادة مبادرة أو جمعية خيرية',           scores:{E:3},   reflection:'المبادرة والقيادة المجتمعية سمة المغامر.' }
+    ]
+  }
+];
+
+// ──────────────────────────────────────────────────
+//  SECTION B: أسئلة الجاهزية المهنية — 7 أسئلة
+//  تقيس: الوضوح، البحث، المعرفة، الاستشارة، الثقة، التخطيط، الفهم الذاتي
+// ──────────────────────────────────────────────────
+const MATURITY_QUESTIONS = [
+
+  // ─ M1: وضوح الهدف ─
+  {
+    text: 'إذا طُلب منك اليوم اختيار تخصصك الجامعي، ما حال قرارك؟',
+    type: 'decision',
+    meta: 'الجاهزية · وضوح الهدف',
+    dimension: 'clarity',
+    options: [
+      { label: 'قرارٌ حاسم ولديّ تصور واضح جداً',     matScore:95, reflection:'الوضوح في الهدف مؤشر نضج مهني حقيقي.' },
+      { label: 'عندي أفكار لكن لم أحسم الأمر بعد',    matScore:65, reflection:'الأفكار الأولية نقطة بداية جيدة للاستكشاف.' },
+      { label: 'مترددٌ بين خيارين أو ثلاثة',           matScore:45, reflection:'التردد بين خيارات محددة أفضل من الضياع التام.' },
+      { label: 'لم أفكر في الأمر بجدية حتى الآن',     matScore:20, reflection:'هذه الرحلة ستساعدك على بناء أول تصور حقيقي.' }
+    ]
+  },
+
+  // ─ M2: معرفة القدرات ─
+  {
+    text: 'كيف تصف معرفتك بقدراتك ومهاراتك الحالية؟',
+    type: 'preference',
+    meta: 'الجاهزية · الوعي الذاتي',
+    dimension: 'selfawareness',
+    options: [
+      { label: 'أعرف جيداً ما أجيده وما يصعب عليّ',  matScore:90, reflection:'الوعي الذاتي بالقدرات أساس القرار المهني الصائب.' },
+      { label: 'لديّ تصور عام لكن بحاجة للتوضيح',    matScore:60, reflection:'التصور العام يمكن تطويره بالتأمل والتجربة.' },
+      { label: 'لا أعرف تحديداً ما يميّزني',          matScore:35, reflection:'اكتشاف القدرات رحلة — وهذه الأداة بداية لها.' },
+      { label: 'لم أفكر في قدراتي بهذه الطريقة',     matScore:15, reflection:'السؤال الأول في الرحلة هو: "ما الذي أجيده؟"' }
+    ]
+  },
+
+  // ─ M3: البحث عن التخصصات ─
+  {
+    text: 'هل بحثت عن التخصصات الجامعية المتاحة وما تتطلبه؟',
+    type: 'behavior',
+    meta: 'الجاهزية · جمع المعلومات',
+    dimension: 'information',
+    options: [
+      { label: 'نعم، بحثت بعمق وأعرف تفاصيل عدة تخصصات', matScore:95, reflection:'البحث الاستباقي دليل جاهزية واهتمام حقيقي.' },
+      { label: 'بحثت ببعض التفاصيل لكن ليس بعمق',      matScore:65, reflection:'البداية موجودة — التعمق هو الخطوة التالية.' },
+      { label: 'سمعت عن بعضها لكن لم أبحث بنفسي',     matScore:35, reflection:'الفرق بين السماع والبحث الذاتي كبير في بناء القرار.' },
+      { label: 'لم أبدأ بذلك حتى الآن',               matScore:10, reflection:'البحث عن التخصصات خطوة بسيطة لكن أثرها كبير.' }
+    ]
+  },
+
+  // ─ M4: استشارة الآخرين ─
+  {
+    text: 'هل تحدثت مع متخصصين أو مرشدين عن مستقبلك المهني؟',
+    type: 'behavior',
+    meta: 'الجاهزية · الاستشارة',
+    dimension: 'consultation',
+    options: [
+      { label: 'نعم وأخذت خطوات عملية بناءً على ذلك',  matScore:95, reflection:'الاستشارة مع التطبيق دليل نضج مهني متقدم.' },
+      { label: 'تحدثت مع بعضهم لكن بدون تغيير فعلي',  matScore:60, reflection:'الحوار بداية — والخطوة التالية هي التطبيق.' },
+      { label: 'تحدثت مع الأهل فقط',                   matScore:40, reflection:'رأي الأهل مهم، لكن المتخصصين يُضيفون رؤية مختلفة.' },
+      { label: 'لم أتحدث مع أحد في هذا الموضوع',      matScore:15, reflection:'التحدث مع مرشد أو متخصص خطوة أكثر قيمة مما تتوقع.' }
+    ]
+  },
+
+  // ─ M5: الثقة بالقرار ─
+  {
+    text: 'كيف تصف شعورك تجاه اتخاذ القرار المهني الآن؟',
+    type: 'situation',
+    meta: 'الجاهزية · الثقة والجاهزية',
+    dimension: 'confidence',
+    options: [
+      { label: 'واثق وجاهز — أعرف ما أريد',           matScore:90, reflection:'الثقة مع الوضوح مزيج مثالي للقرار المهني.' },
+      { label: 'متفائل لكن لا أزال في طور الاستكشاف', matScore:65, reflection:'التفاؤل مع الاستكشاف نهج صحي ومتوازن.' },
+      { label: 'قلق من اتخاذ القرار الخاطئ',          matScore:40, reflection:'القلق دليل اهتمام — لكن لا قرار مثالياً بلا مخاطرة.' },
+      { label: 'أشعر بالضياع ولا أعرف من أين أبدأ',  matScore:15, reflection:'نقطة البداية الأمينة أفضل من التظاهر بالجاهزية.' }
+    ]
+  },
+
+  // ─ M6: التخطيط ─
+  {
+    text: 'هل وضعت خطة ولو مبدئية لمساعدة مستقبلك المهني؟',
+    type: 'decision',
+    meta: 'الجاهزية · التخطيط',
+    dimension: 'planning',
+    options: [
+      { label: 'نعم، خطة واضحة بأهداف ومراحل محددة',  matScore:95, reflection:'التخطيط الاستباقي يُقلص الفجوة بين الحلم والواقع.' },
+      { label: 'خطة مبدئية في ذهني لم أكتبها',        matScore:60, reflection:'تحويل الخطة الذهنية لمكتوبة خطوة تُضاعف فرص تحققها.' },
+      { label: 'فكرت في الأمر لكن بدون خطة حقيقية',   matScore:35, reflection:'الفرق بين التفكير والتخطيط هو الخطوة الفاصلة.' },
+      { label: 'لم أضع أي خطة حتى الآن',             matScore:10, reflection:'البدء بخطة مبسطة — ولو في صفحة — له أثر حقيقي.' }
+    ]
+  },
+
+  // ─ M7: معرفة سوق العمل ─
+  {
+    text: 'كيف تصف معرفتك بمتطلبات سوق العمل في التخصص الذي يهمك؟',
+    type: 'preference',
+    meta: 'الجاهزية · معرفة سوق العمل',
+    dimension: 'marketknowledge',
+    options: [
+      { label: 'أعرف المهارات والمتطلبات وأعمل على اكتسابها', matScore:95, reflection:'معرفة السوق مع العمل على تلبيتها رؤية استراتيجية ناضجة.' },
+      { label: 'لديّ فكرة عامة عن متطلباته',               matScore:60, reflection:'الفكرة العامة نقطة انطلاق — والتعمق يأتي بالبحث.' },
+      { label: 'سمعت بعض المعلومات لكن لست متأكداً',       matScore:35, reflection:'التحقق من المعلومات السوقية مهارة تُبنى بالتدريب.' },
+      { label: 'لا أعرف تقريباً ما يطلبه سوق العمل',      matScore:10, reflection:'معرفة السوق قبل الاختيار تُجنّبك مفاجآت مستقبلية.' }
+    ]
+  }
+];
+
+// ──────────────────────────────────────────────────
+//  SECTION C: أسئلة رؤية 2030 وسوق العمل — 6 أسئلة
+//  تربط الميول بالقطاعات دون تلقين مباشر
+// ──────────────────────────────────────────────────
+const VISION_QUESTIONS = [
+
+  // ─ V1: الطموح ─
+  {
+    text: 'تخيّل نفسك بعد عشر سنوات في يوم عمل عادي. أين أنت؟',
+    type: 'preference',
+    meta: 'رؤية 2030 · الطموح المهني',
+    key: 'ambition',
+    options: [
+      { label: 'في مختبر أو مركز بحثي أعمل على اكتشاف جديد',    value:'باحث أو عالم متخصص',      sector:'التقنية والبحث العلمي', reflection:'المسار البحثي يناسب أصحاب الفضول المعرفي العميق.' },
+      { label: 'أقود فريقاً في شركة أو مشروعي الخاص',            value:'قائد أو رائد أعمال',        sector:'ريادة الأعمال والقيادة', reflection:'القيادة وريادة الأعمال مسار الطامحين للتأثير الواسع.' },
+      { label: 'في عيادة أو مستشفى أو مدرسة أخدم الناس',        value:'متخصص في خدمة المجتمع',    sector:'الصحة والتعليم',         reflection:'خدمة الإنسان مباشرة مسار من يحمل دافعاً إنسانياً قوياً.' },
+      { label: 'أعمل على مشاريع إبداعية أو تصميمية',            value:'مبدع ومصمم متخصص',          sector:'الاقتصاد الإبداعي',      reflection:'الإبداع مسار في نمو متسارع مع رؤية 2030.' }
+    ]
+  },
+
+  // ─ V2: المحرك ─
+  {
+    text: 'ما الذي سيجعلك تشعر أن عملك يستحق؟',
+    type: 'preference',
+    meta: 'رؤية 2030 · المحرك الجوهري',
+    key: 'driver',
+    options: [
+      { label: 'أن أرى أثراً حقيقياً على حياة الناس',             value:'خدمة المجتمع',          reflection:'الدافع الإنساني يجعل العمل مصدراً للمعنى لا الرزق فقط.' },
+      { label: 'أن أبني شيئاً مميزاً يحمل اسمي',                  value:'الإبداع والتميز',       reflection:'الطموح للتميز والأثر محرّك لا ينضب.' },
+      { label: 'أن أعيش حياة مريحة ومستقرة مالياً',              value:'الاستقرار المادي',      reflection:'الاستقرار هدف واقعي ومشروع تماماً.' },
+      { label: 'أن أحل مشكلات معقدة تُحدث تحولاً كبيراً',       value:'الابتكار والتحول',      reflection:'الطموح للتحول الكبير يُميّز أصحاب الرؤية.' }
+    ]
+  },
+
+  // ─ V3: القطاع ─
+  {
+    text: 'أي من هذه المجالات تعتقد أنها ستكون الأكثر تأثيراً في المملكة خلال 10 سنوات؟',
+    type: 'situation',
+    meta: 'رؤية 2030 · القطاع المستقبلي',
+    key: 'sector',
+    options: [
+      { label: 'الذكاء الاصطناعي والتقنية الرقمية',    value:'قطاع التقنية والذكاء الاصطناعي',  reflection:'التقنية الرقمية محور رؤية 2030 واقتصاد المستقبل.' },
+      { label: 'الرعاية الصحية والطب التخصصي',         value:'قطاع الصحة والرعاية الطبية',      reflection:'الصحة استثمار وطني ضخم في رؤية 2030.' },
+      { label: 'السياحة والترفيه والثقافة',             value:'قطاع السياحة والاقتصاد الإبداعي',reflection:'السياحة والإبداع قطاعان في طفرة غير مسبوقة.' },
+      { label: 'التعليم وبناء الكوادر البشرية',         value:'قطاع التعليم والتطوير البشري',    reflection:'بناء الإنسان هو الاستثمار الأطول أثراً.' }
+    ]
+  },
+
+  // ─ V4: نوع العمل ─
+  {
+    text: 'أي نوع من العمل يلائمك أكثر؟',
+    type: 'preference',
+    meta: 'رؤية 2030 · نوع العمل',
+    key: 'worktype',
+    options: [
+      { label: 'عمل حكومي بمسار واضح ومستقر',         value:'القطاع الحكومي',     reflection:'القطاع الحكومي يوفر الاستقرار ومسارات تطور محددة.' },
+      { label: 'عمل في شركة خاصة بيئة ديناميكية',    value:'القطاع الخاص',       reflection:'القطاع الخاص يُتيح التعلم السريع والتطور المهني.' },
+      { label: 'أعمل لنفسي بمشروعي المستقل',          value:'العمل الحر',         reflection:'استقلالية العمل تناسب أصحاب المبادرة والجرأة.' },
+      { label: 'منظمات اجتماعية أو عمل تطوعي',        value:'العمل التطوعي الاجتماعي', reflection:'العمل الاجتماعي والتطوعي له مكانة متنامية في المملكة.' }
+    ]
+  },
+
+  // ─ V5: المهارة ─
+  {
+    text: 'أي من هذه المهارات تعتقد أنها مهمة لعملك المستقبلي؟',
+    type: 'behavior',
+    meta: 'رؤية 2030 · المهارة المستقبلية',
+    key: 'skill',
+    options: [
+      { label: 'مهارات التقنية والبرمجة والبيانات',   value:'التقنية والبيانات',   reflection:'مهارات التقنية والبيانات بين الأعلى طلباً في السوق.' },
+      { label: 'مهارات القيادة والتفاوض والإقناع',    value:'القيادة والتواصل',   reflection:'مهارات القيادة والتواصل لا تُستغنى عنها في أي مجال.' },
+      { label: 'مهارات الإبداع والتصميم والابتكار',   value:'الإبداع والابتكار',  reflection:'الإبداع مهارة مطلوبة بشكل متزايد في اقتصاد المعرفة.' },
+      { label: 'مهارات التحليل والبحث واتخاذ القرار', value:'التحليل والبحث',     reflection:'التفكير التحليلي أساس القرارات الذكية في أي قطاع.' }
+    ]
+  },
+
+  // ─ V6: التحدي ─
+  {
+    text: 'أي من هذه التحديات تجذبك للعمل على حلها؟',
+    type: 'decision',
+    meta: 'رؤية 2030 · التحدي الوطني',
+    key: 'challenge',
+    options: [
+      { label: 'تطوير التعليم ورفع جودته',              value:'تطوير التعليم',     reflection:'تطوير التعليم تحدٍّ محوري في رؤية 2030.' },
+      { label: 'تنويع الاقتصاد وتقليل الاعتماد على النفط', value:'تنويع الاقتصاد', reflection:'تنويع الاقتصاد هدف رؤية 2030 الأساسي.' },
+      { label: 'تطوير الرعاية الصحية للمواطن',          value:'تطوير الصحة',       reflection:'رفع جودة الصحة استثمار بشري واقتصادي في آنٍ واحد.' },
+      { label: 'دعم الشباب السعودي وتمكينه',            value:'تمكين الشباب',      reflection:'تمكين الشباب قلب رؤية 2030 وروحها.' }
+    ]
+  }
+];
+
+
+
+/*
+ * ═══════════════════════════════════════════════════
+ *  MARKET DATA — بيانات سوق العمل والتوصيات
+ *  مرتبطة بالكود الثلاثي لهولاند
+ *
+ *  لتعديل التوصيات: ابحث عن HOLLAND_PROFILES
+ *  لتعديل بيانات القطاعات: ابحث عن SECTOR_DATA
+ * ═══════════════════════════════════════════════════
+ */
+
+// أسماء الأنماط الستة
+const PATTERN_NAMES = {
+  R:'الواقعي', I:'التحقيقي', A:'الفني', S:'الاجتماعي', E:'المغامر', C:'التقليدي'
+};
+
+// ألوان الأنماط
+const PATTERN_COLORS = {
+  R:'var(--gold)', I:'var(--teal)', A:'var(--purple)',
+  S:'var(--green)', E:'var(--rose)', C:'var(--gold2)'
+};
+
+// وصف مختصر لكل نمط
+const PATTERN_DESC_SHORT = {
+  R:'يفضّل العمل العملي والتقني والميكانيكي',
+  I:'يستمتع بالتحليل والبحث وحل المسائل',
+  A:'يتميز بالإبداع والتعبير الفني',
+  S:'يُحب مساعدة الآخرين والعمل معهم',
+  E:'يُقدّم القيادة والمبادرة والإقناع',
+  C:'يُجيد التنظيم والدقة والإتقان'
+};
+
+// ══════════════════════════════════════════════════
+//  HOLLAND_PROFILES — ملفات الأنماط
+//  كل نمط له: الاسم، الوصف، التحليل، القطاعات، الوظائف، التخصصات، التوصية
+// ══════════════════════════════════════════════════
+const HOLLAND_PROFILES = {
+  R: {
+    name: 'الواقعي التقني',
+    desc: 'لديك ميل واضح نحو العمل العملي والتقني. تفضّل التعامل مع الأشياء والأدوات والأنظمة الملموسة أكثر من التعامل مع الأفكار المجردة.',
+    analysis: 'شخصيتك المهنية تتشكّل حول القدرة العملية والتقنية — تستمتع بالبناء والإصلاح والتشغيل. هذا النمط يُميّز المهندسين والتقنيين والصنّاعين الذين يُحوّلون الأفكار إلى واقع ملموس. قوتك في الدقة التقنية والتطبيق العملي، وقد تجد الجانب النظري المجرد أقل جاذبية.',
+    sectors: ['قطاع الهندسة والتصنيع','قطاع التقنية','قطاع الطاقة','قطاع البناء والبنية التحتية'],
+    jobs: [
+      {t:'مهندس برمجيات',     d:'طلب مرتفع جداً', s:'التقنية'},
+      {t:'مهندس ميكانيكي',    d:'طلب مرتفع',       s:'الصناعة'},
+      {t:'مهندس كهربائي',     d:'طلب مرتفع',       s:'الطاقة'},
+      {t:'تقني صناعي متخصص', d:'طلب متنامٍ',      s:'التصنيع'},
+      {t:'مهندس طاقة متجددة', d:'طلب مرتفع جداً', s:'الطاقة'}
+    ],
+    specs: [
+      {icon:'⚙️',text:'الهندسة الميكانيكية أو الصناعية'},
+      {icon:'🖥️',text:'هندسة الحاسب والبرمجيات'},
+      {icon:'⚡',text:'الهندسة الكهربائية والإلكترونية'},
+      {icon:'🏗️',text:'الهندسة المدنية والبنية التحتية'},
+      {icon:'🔋',text:'هندسة الطاقة المتجددة'}
+    ],
+    action: 'ابدأ بتعزيز مهاراتك التقنية والبرمجية من خلال مشاريع عملية أو دورات متخصصة. تحدث مع مهندسين يعملون في التخصصات التي تستهويك للحصول على صورة حقيقية عن بيئة العمل.'
+  },
+
+  I: {
+    name: 'التحقيقي البحثي',
+    desc: 'لديك فضول معرفي عميق ودافع للفهم والتحليل. تُقدّم التفكير المنطقي والبحث العلمي على العمل الروتيني.',
+    analysis: 'شخصيتك المهنية مدفوعة بالفضول والتحليل — تُقدّر المعرفة لذاتها وتجد الرضا في فهم الأشياء على أعمق مستوياتها. هذا النمط يُميّز العلماء والباحثين ومحللي البيانات والأطباء والاقتصاديين. قوتك في التفكير النقدي والتحليلي، وقد تجد المواقف التي تتطلب القيادة العاطفية أكثر تحدياً.',
+    sectors: ['قطاع البحث العلمي','قطاع التقنية والذكاء الاصطناعي','قطاع الصحة','قطاع المالية والاستثمار'],
+    jobs: [
+      {t:'باحث ذكاء اصطناعي',    d:'طلب مرتفع جداً', s:'التقنية'},
+      {t:'محلل بيانات',           d:'طلب مرتفع جداً', s:'قطاعات متعددة'},
+      {t:'أخصائي أمن معلومات',    d:'طلب مرتفع',      s:'التقنية'},
+      {t:'طبيب متخصص',           d:'طلب مستدام',      s:'الصحة'},
+      {t:'محلل مالي واقتصادي',    d:'طلب مرتفع',      s:'المالية'}
+    ],
+    specs: [
+      {icon:'🤖',text:'علوم البيانات والذكاء الاصطناعي'},
+      {icon:'🧬',text:'الطب والعلوم الحيوية'},
+      {icon:'📐',text:'الرياضيات التطبيقية والإحصاء'},
+      {icon:'🔬',text:'الكيمياء أو الفيزياء التطبيقية'},
+      {icon:'💹',text:'الاقتصاد والتحليل المالي'}
+    ],
+    action: 'تعمّق في مجال علمي يستهويك وابنِ مشاريع بحثية صغيرة تُثبت فيها قدراتك التحليلية. تواصل مع باحثين في الجامعات السعودية أو المراكز البحثية لفهم مسار العمل العلمي.'
+  },
+
+  A: {
+    name: 'الفني الإبداعي',
+    desc: 'لديك حساسية جمالية مرتفعة وقدرة تعبيرية متميزة. تُفضّل البيئات التي تُتيح لك الإبداع والتجديد دون قيود صارمة.',
+    analysis: 'شخصيتك المهنية تتمحور حول التعبير والجمال والإبداع — تجد الرضا في إنتاج أعمال تُلهم الآخرين أو تُحسّن تجربتهم. هذا النمط يُميّز المصممين والفنانين والكتّاب والمخرجين. قوتك في التفكير الإبداعي وإيجاد حلول غير تقليدية، وقد تجد الأعمال الروتينية المتكررة مُنهِكة.',
+    sectors: ['قطاع الاقتصاد الإبداعي','قطاع التقنية والتصميم','قطاع الإعلام','قطاع السياحة والترفيه'],
+    jobs: [
+      {t:'مصمم تجربة المستخدم UX', d:'طلب مرتفع جداً', s:'التقنية'},
+      {t:'منتج محتوى رقمي',         d:'طلب مرتفع جداً', s:'الإعلام'},
+      {t:'مصمم جرافيك وهوية بصرية', d:'طلب مرتفع',      s:'قطاعات متعددة'},
+      {t:'مخرج ومنتج إعلامي',       d:'طلب متنامٍ',      s:'الترفيه'},
+      {t:'مصمم معماري',             d:'طلب مستدام',      s:'البناء'}
+    ],
+    specs: [
+      {icon:'🎨',text:'تصميم الجرافيك والاتصال البصري'},
+      {icon:'🏛️',text:'العمارة والتصميم الداخلي'},
+      {icon:'🎬',text:'الإنتاج الإعلامي والسينما'},
+      {icon:'✍️',text:'الكتابة الإبداعية والصحافة'},
+      {icon:'🖥️',text:'تصميم تجربة المستخدم'}
+    ],
+    action: 'ابنِ معرضاً رقمياً لأعمالك الإبداعية وتعلّم أدوات التصميم الرقمي المحترف. رؤية 2030 تفتح أبواباً واسعة في قطاع الاقتصاد الإبداعي — كن من أوائل المؤهلين فيه.'
+  },
+
+  S: {
+    name: 'الاجتماعي الإنساني',
+    desc: 'لديك دافع إنساني قوي وقدرة عالية على التواصل وبناء العلاقات. تجد معنى حقيقياً في مساعدة الآخرين.',
+    analysis: 'شخصيتك المهنية مبنية على الانتماء الإنساني والرغبة في الإسهام — تُجيد التواصل والتعليم والإرشاد. هذا النمط يُميّز المعلمين والأطباء والمرشدين والمدربين. قوتك في الذكاء العاطفي والتواصل الفعّال، وقد تجد العمل المنعزل لفترات طويلة مُجهِداً.',
+    sectors: ['قطاع التعليم','قطاع الصحة والرعاية','قطاع الخدمات الاجتماعية','قطاع التدريب والتطوير'],
+    jobs: [
+      {t:'معلم أو مدرب متخصص',    d:'طلب مستدام',      s:'التعليم'},
+      {t:'طبيب أو ممرض سريري',    d:'طلب مرتفع جداً',  s:'الصحة'},
+      {t:'مرشد مهني أو نفسي',     d:'طلب متنامٍ',      s:'التعليم'},
+      {t:'أخصائي موارد بشرية',    d:'طلب مستدام',      s:'قطاعات متعددة'},
+      {t:'مدير تطوير مجتمعي',     d:'طلب متنامٍ',      s:'الخدمات'}
+    ],
+    specs: [
+      {icon:'📚',text:'التربية وعلم النفس التربوي'},
+      {icon:'🏥',text:'الطب والتمريض والعلوم الصحية'},
+      {icon:'🧠',text:'علم النفس الإرشادي والإكلينيكي'},
+      {icon:'👥',text:'الخدمة الاجتماعية والإنسانية'},
+      {icon:'💼',text:'إدارة الموارد البشرية'}
+    ],
+    action: 'تطوّع في برامج مجتمعية أو تعليمية لبناء خبرتك الإنسانية. تواصل مع محترفين في قطاع التعليم أو الصحة الذين يشاركونك شغفك بالتأثير الإيجابي.'
+  },
+
+  E: {
+    name: 'المغامر القيادي',
+    desc: 'لديك طموح قيادي واضح ودافع للتأثير والإقناع وقيادة الآخرين نحو أهداف كبيرة.',
+    analysis: 'شخصيتك المهنية مدفوعة بالطموح والتأثير — تُجيد الإقناع وقيادة الفرق ورؤية الصورة الكبيرة. هذا النمط يُميّز رواد الأعمال والمديرين التنفيذيين والمفاوضين. قوتك في الجرأة والمبادرة والتأثير في الآخرين، وقد تجد الأعمال الروتينية التفصيلية أقل جاذبية.',
+    sectors: ['قطاع ريادة الأعمال','قطاع التسويق والمبيعات','قطاع الاستشارات','قطاع المالية والاستثمار'],
+    jobs: [
+      {t:'رائد أو رائدة أعمال',    d:'طلب متنامٍ',      s:'قطاع الأعمال'},
+      {t:'مدير مشاريع',            d:'طلب مرتفع جداً',  s:'قطاعات متعددة'},
+      {t:'مدير تسويق رقمي',        d:'طلب مرتفع جداً',  s:'التقنية'},
+      {t:'مستشار أعمال واستراتيجي',d:'طلب مرتفع',      s:'الاستشارات'},
+      {t:'مدير تطوير الأعمال',     d:'طلب مرتفع',      s:'قطاعات متعددة'}
+    ],
+    specs: [
+      {icon:'💼',text:'إدارة الأعمال والتخطيط الاستراتيجي'},
+      {icon:'📈',text:'التسويق الرقمي وإدارة العلامات التجارية'},
+      {icon:'🚀',text:'ريادة الأعمال والابتكار'},
+      {icon:'💰',text:'المالية والاستثمار وإدارة المحافظ'},
+      {icon:'🌐',text:'الإدارة الدولية والأعمال العالمية'}
+    ],
+    action: 'شارك في برامج ريادة الأعمال المتاحة للشباب السعودي مثل منشآت وبرنامج مسك. ابدأ مشروعاً صغيراً ولو على نطاق ضيق لبناء خبرة عملية حقيقية.'
+  },
+
+  C: {
+    name: 'التقليدي المنظّم',
+    desc: 'لديك قدرة عالية على التنظيم والدقة والانضباط. تُقدّر الأنظمة الواضحة والمهام المحددة جيداً.',
+    analysis: 'شخصيتك المهنية مبنية على الدقة والموثوقية والإتقان — تُجيد إدارة البيانات والأنظمة والتفاصيل. هذا النمط يُميّز المحاسبين والمحللين الماليين ومديري الأنظمة. قوتك في الدقة والموثوقية والتنظيم الفعّال، وقد تجد بيئات الفوضى والتغيير المستمر أكثر إرهاقاً.',
+    sectors: ['قطاع المالية والمحاسبة','قطاع تقنية المعلومات','قطاع الإدارة الحكومية','قطاع البنوك والتأمين'],
+    jobs: [
+      {t:'محاسب قانوني معتمد',     d:'طلب مستدام',      s:'المالية'},
+      {t:'محلل مالي ومخاطر',       d:'طلب مرتفع',      s:'البنوك'},
+      {t:'مدير نظم معلومات',       d:'طلب مرتفع',      s:'التقنية'},
+      {t:'مدقق حسابات',            d:'طلب مستدام',      s:'المالية'},
+      {t:'أخصائي إدارة البيانات',  d:'طلب متنامٍ',      s:'قطاعات متعددة'}
+    ],
+    specs: [
+      {icon:'📊',text:'المحاسبة والمراجعة والتدقيق'},
+      {icon:'💹',text:'التمويل والاستثمار وإدارة الأصول'},
+      {icon:'💻',text:'نظم المعلومات وإدارة البيانات'},
+      {icon:'🗂️',text:'إدارة الأعمال والأنظمة الإدارية'},
+      {icon:'🔐',text:'إدارة المخاطر والامتثال'}
+    ],
+    action: 'ابنِ مهاراتك في برامج المحاسبة والتحليل المالي والبيانات. شهادات مهنية مثل CPA أو CFA تفتح أبواباً واسعة في سوق العمل السعودي والإقليمي.'
+  }
+};
+
+// مستويات الجاهزية
+const MATURITY_LEVELS = {
+  high: {
+    label: 'مرتفعة',
+    color: 'var(--green)',
+    badge: '🌟 جاهزية مرتفعة',
+    meaning: 'لديك وعي واضح بنفسك وميولك، وخطة مبدئية لمستقبلك. أنت في موقع جيد لاتخاذ قرار مهني مدروس.',
+    nextStep: 'ابدأ بالتواصل مع متخصصين في مجالك المفضل، وابحث في برامج القبول للتخصصات التي تستهويك.'
+  },
+  medium: {
+    label: 'متوسطة',
+    color: 'var(--gold)',
+    badge: '📈 جاهزية متوسطة',
+    meaning: 'لديك وعي جيد لكن ما زلت في مرحلة الاستكشاف. هذا وضع طبيعي جداً في مرحلتك.',
+    nextStep: 'خصص وقتاً أسبوعياً للبحث عن مجالات تستهويك وتحدث مع متخصصين أو مرشدين مهنيين.'
+  },
+  low: {
+    label: 'تحتاج تطوير',
+    color: 'var(--rose)',
+    badge: '🌱 بداية الرحلة',
+    meaning: 'أنت في بداية رحلة اكتشاف ذاتك المهنية. لا بأس — الوعي بنقطة البداية خطوة شجاعة.',
+    nextStep: 'ابدأ بالتحدث مع المرشد المدرسي وجرّب أنشطة متنوعة لاكتشاف ما يُثير اهتمامك الحقيقي.'
+  }
+};
+
+// أبعاد الجاهزية (للتقرير التفصيلي)
+const MATURITY_DIMENSIONS = {
+  clarity:       'وضوح الهدف المهني',
+  selfawareness: 'الوعي بالقدرات الذاتية',
+  information:   'جمع المعلومات والبحث',
+  consultation:  'الاستشارة والتواصل',
+  confidence:    'الثقة واتخاذ القرار',
+  planning:      'التخطيط والتنظيم',
+  marketknowledge:'معرفة سوق العمل'
+};
+
+
+
+/*
+ * ═══════════════════════════════════════════
+ *  APP — وحدة التحكم الرئيسية
+ * ═══════════════════════════════════════════
+ */
+const APP = (() => {
+
+  // ── STATE ──────────────────────────────────────
+  const state = {
+    user: { name:'', gender:'', school:'', grade:'', major:'' },
+    holland: { scores:{R:0,I:0,A:0,S:0,E:0,C:0}, answers:[] },
+    maturity: { scores:{}, dimensionScores:{}, answers:[] },
+    vision:   { ambition:'', driver:'', sector:'', worktype:'', skill:'', challenge:'', answers:[] },
+    currentSection: 0,
+    agentsDone: { 2:false, 3:false, 4:false }
+  };
+
+  // ── SECTION MANAGEMENT ─────────────────────────
+  function startJourney() {
+    document.getElementById('welcome-card').style.display = 'none';
+    document.getElementById('progress-wrap').style.display = 'block';
+    goToSection(1);
+  }
+
+  function goToSection(n) {
+    if (n === 2) {
+      state.user.name   = document.getElementById('fn').value.trim();
+      state.user.gender = document.getElementById('fg2').value;
+      state.user.school = document.getElementById('fsc').value.trim();
+      state.user.grade  = document.getElementById('fgr').value;
+      state.user.major  = document.getElementById('fmj').value;
+      if (!state.user.name || !state.user.gender || !state.user.grade || !state.user.major) {
+        alert('يرجى تعبئة جميع الحقول أولاً 😊'); return;
+      }
+    }
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.getElementById('section-' + n).classList.add('active');
+    updateProgress(n);
+    window.scrollTo({top:0, behavior:'smooth'});
+    state.currentSection = n;
+
+    // Init agents on first visit
+    if (n === 2 && !state.agentsDone[2] && document.getElementById('quiz-shell-2').children.length === 0)
+      QUIZ.init(2, HOLLAND_QUESTIONS, 'holland');
+    if (n === 3 && !state.agentsDone[3] && document.getElementById('quiz-shell-3').children.length === 0)
+      QUIZ.init(3, MATURITY_QUESTIONS, 'maturity');
+    if (n === 4 && !state.agentsDone[4] && document.getElementById('quiz-shell-4').children.length === 0)
+      QUIZ.init(4, VISION_QUESTIONS, 'vision');
+    if (n === 5)
+      REPORT.build();
+  }
+
+  function updateProgress(n) {
+    document.getElementById('pf').style.width = (n/5*100) + '%';
+    ['s1l','s2l','s3l','s4l','s5l'].forEach((id, i) => {
+      const el = document.getElementById(id);
+      el.className = 'pstep';
+      if (i+1 < n) el.classList.add('done');
+      else if (i+1 === n) el.classList.add('active');
+    });
+  }
+
+  function updateGreeting() {
+    const n = document.getElementById('fn').value.trim();
+    const g = document.getElementById('fg2').value;
+    const bar = document.getElementById('gbar');
+    if (n && g) {
+      const t = g === 'طالب' ? `عزيزي الطالب ${n}` : `عزيزتي الطالبة ${n}`;
+      document.getElementById('gtxt').textContent = t + '، يسعدنا مشاركتك في هذه الرحلة 💛';
+      bar.style.display = 'flex';
+    } else if (n) {
+      document.getElementById('gtxt').textContent = `مرحباً ${n}، يسعدنا مشاركتك 💛`;
+      bar.style.display = 'flex';
+    } else {
+      bar.style.display = 'none';
+    }
+  }
+
+  // ── API-READY FUNCTIONS ─────────────────────────
+  // هذه الدوال جاهزة للربط بـ API لاحقاً
+  // عند الربط: استبدل المنطق الداخلي باستدعاء API
+
+  function collectAnswers() {
+    // تجمع كل إجابات الطالب في بنية موحدة جاهزة للإرسال
+    return {
+      user: state.user,
+      holland_answers: state.holland.answers,
+      maturity_answers: state.maturity.answers,
+      vision_answers: state.vision.answers,
+      timestamp: new Date().toISOString()
+    };
+  }
+
+  function calculateHollandCode() {
+    const sorted = Object.entries(state.holland.scores).sort((a,b) => b[1]-a[1]);
+    return {
+      top3: sorted.slice(0,3).map(x => x[0]),
+      code: sorted.slice(0,3).map(x => x[0]).join(''),
+      allScores: Object.fromEntries(sorted),
+      topPattern: sorted[0][0]
+    };
+  }
+
+  function calculateCareerReadiness() {
+    const dimScores = state.maturity.dimensionScores;
+    const vals = Object.values(dimScores);
+    const avg = vals.length ? Math.round(vals.reduce((a,b) => a+b, 0) / vals.length) : 50;
+    return {
+      overall: avg,
+      level: avg >= 70 ? 'high' : avg >= 45 ? 'medium' : 'low',
+      dimensions: dimScores
+    };
+  }
+
+  function generateReport() {
+    // يُعيد بنية التقرير الكامل — جاهزة للإرسال لـ API أو عرضها محلياً
+    const holland = calculateHollandCode();
+    const readiness = calculateCareerReadiness();
+    return {
+      user: state.user,
+      hollandCode: holland.code,
+      hollandScores: holland.allScores,
+      careerReadiness: readiness,
+      vision: state.vision,
+      generatedAt: new Date().toISOString()
+    };
+  }
+
+  // ── مكان ربط API ────────────────────────────────
+  async function submitResults() {
+    if (CONFIG.USE_API) {
+      // ══════════════════════════════════════════
+      //  هنا يتم ربط API لاحقاً
+      //  const report = generateReport();
+      //  const response = await fetch(CONFIG.API_ENDPOINT, {
+      //    method: 'POST',
+      //    headers: { 'Content-Type': 'application/json', 'x-api-key': CONFIG.API_KEY },
+      //    body: JSON.stringify(report)
+      //  });
+      // ══════════════════════════════════════════
+    } else {
+      // Prototype: إرسال لـ Google Forms
+      const holland = calculateHollandCode();
+      const readiness = calculateCareerReadiness();
+      const p = new URLSearchParams({
+        [CONFIG.FORMS_ENTRIES.name]:          state.user.name,
+        [CONFIG.FORMS_ENTRIES.gender]:        state.user.gender,
+        [CONFIG.FORMS_ENTRIES.school]:        state.user.school,
+        [CONFIG.FORMS_ENTRIES.grade]:         state.user.grade,
+        [CONFIG.FORMS_ENTRIES.major]:         state.user.major,
+        [CONFIG.FORMS_ENTRIES.hollandCode]:   holland.code,
+        [CONFIG.FORMS_ENTRIES.careerPattern]: HOLLAND_PROFILES[holland.topPattern]?.name || '',
+        [CONFIG.FORMS_ENTRIES.maturityLevel]: MATURITY_LEVELS[readiness.level]?.label || '',
+        [CONFIG.FORMS_ENTRIES.maturityPercent]: readiness.overall + '%',
+        [CONFIG.FORMS_ENTRIES.sector]:        state.vision.sector,
+        [CONFIG.FORMS_ENTRIES.ambition]:      state.vision.ambition,
+        [CONFIG.FORMS_ENTRIES.driver]:        state.vision.driver,
+        'usp': 'pp_url'
+      });
+      window.open(CONFIG.FORMS_URL + '?' + p.toString(), '_blank');
+    }
+  }
+
+  // Public API
+  return { startJourney, goToSection, updateGreeting, updateProgress,
+           collectAnswers, calculateHollandCode, calculateCareerReadiness, generateReport, submitResults,
+           getState: () => state };
+})();
+
+// ══════════════════════════════════════════════════
+//  QUIZ — محرك الأسئلة
+// ══════════════════════════════════════════════════
+const QUIZ = (() => {
+  const agentState = {};
+
+  function init(sectionNum, questions, type) {
+    agentState[sectionNum] = { qIndex: 0, questions, type, done: false };
+    const shell = document.getElementById('quiz-shell-' + sectionNum);
+    shell.innerHTML = '';
+
+    // Phase track
+    const phaseDiv = document.createElement('div');
+    phaseDiv.className = 'phase-track';
+    phaseDiv.id = 'phase-track-' + sectionNum;
+    phaseDiv.innerHTML = `
+      <span class="phase-label">التقدم:</span>
+      <div class="phase-dots" id="phase-dots-${sectionNum}">
+        ${questions.map((_,i) => `<div class="phase-dot ${i===0?'active':''}" id="pd-${sectionNum}-${i}"></div>`).join('')}
+      </div>
+      <span class="phase-counter" id="pc-${sectionNum}">1 / ${questions.length}</span>`;
+    shell.appendChild(phaseDiv);
+
+    // Chat area
+    const chatDiv = document.createElement('div');
+    chatDiv.id = 'chat-' + sectionNum;
+    shell.appendChild(chatDiv);
+
+    // Opening message
+    const greetings = {
+      2: `مرحباً ${APP.getState().user.name}! 🌟\nسأطرح عليك ${questions.length} سؤالاً لاكتشاف ميولك المهنية.\nلا توجد إجابة صحيحة أو خاطئة — اختر ما يعبّر عنك فعلاً.`,
+      3: `أحسنت ${APP.getState().user.name}! 📊\nالآن سنقيس مستوى جاهزيتك لاتخاذ قراراتك المهنية.\n${questions.length} أسئلة صريحة — أجب بصدق لتحصل على نتيجة دقيقة.`,
+      4: `اقتربنا من النهاية! 🔮\n${questions.length} أسئلة أخيرة لربط ميولك بسوق العمل السعودي ورؤية 2030.\nاختر ما يعبّر عن طموحك الحقيقي.`
+    };
+    addSysMsg(sectionNum, greetings[sectionNum]);
+    setTimeout(() => askQuestion(sectionNum), 500);
+  }
+
+  function askQuestion(sectionNum) {
+    const st = agentState[sectionNum];
+    if (st.qIndex >= st.questions.length) { finishAgent(sectionNum); return; }
+    const q = st.questions[st.qIndex];
+
+    showThinking(sectionNum, () => {
+      const chatEl = document.getElementById('chat-' + sectionNum);
+
+      // Question
+      const qDiv = document.createElement('div');
+      qDiv.className = 'q-wrap';
+      qDiv.innerHTML = `<div class="q-meta">🧭 ${q.meta}</div><div class="q-text">${q.text}</div>`;
+      chatEl.appendChild(qDiv);
+
+      // Options
+      const optsDiv = document.createElement('div');
+      optsDiv.className = 'opts-grid';
+      q.options.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.className = 'opt';
+        btn.textContent = opt.label;
+        btn.onclick = () => choose(sectionNum, opt, optsDiv, q);
+        optsDiv.appendChild(btn);
+      });
+      chatEl.appendChild(optsDiv);
+      chatEl.scrollTop = chatEl.scrollHeight;
+    });
+  }
+
+  function choose(sectionNum, opt, optsEl, q) {
+    const st = agentState[sectionNum];
+    const chatEl = document.getElementById('chat-' + sectionNum);
+    const userState = APP.getState();
+
+    // Disable & highlight
+    optsEl.querySelectorAll('.opt').forEach(b => {
+      b.disabled = true;
+      if (b.textContent === opt.label) b.classList.add('selected');
+      else b.style.opacity = '.3';
+    });
+
+    // Record answer
+    if (st.type === 'holland' && opt.scores) {
+      Object.keys(opt.scores).forEach(k => userState.holland.scores[k] += opt.scores[k]);
+      userState.holland.answers.push({q: st.qIndex, label: opt.label, scores: opt.scores});
+    }
+    if (st.type === 'maturity' && opt.matScore !== undefined) {
+      const dim = q.dimension;
+      userState.maturity.dimensionScores[dim] = opt.matScore;
+      userState.maturity.answers.push({q: st.qIndex, label: opt.label, dimension: dim, score: opt.matScore});
+    }
+    if (st.type === 'vision') {
+      if (q.key) userState.vision[q.key] = opt.value;
+      userState.vision.answers.push({q: st.qIndex, label: opt.label, key: q.key, value: opt.value});
+    }
+
+    // User bubble
+    const aWrap = document.createElement('div');
+    aWrap.className = 'a-wrap';
+    aWrap.innerHTML = `<div class="a-bubble">${opt.label}</div>`;
+    chatEl.appendChild(aWrap);
+    chatEl.scrollTop = chatEl.scrollHeight;
+
+    // Reflection
+    setTimeout(() => {
+      const rDiv = document.createElement('div');
+      rDiv.className = 'r-wrap';
+      rDiv.innerHTML = `<div class="r-bubble">💡 ${opt.reflection}</div>`;
+      chatEl.appendChild(rDiv);
+      chatEl.scrollTop = chatEl.scrollHeight;
+
+      // Advance
+      st.qIndex++;
+      updatePhaseDots(sectionNum, st.qIndex, st.questions.length);
+      setTimeout(() => askQuestion(sectionNum), 800);
+    }, 350);
+  }
+
+  function showThinking(sectionNum, cb) {
+    const chatEl = document.getElementById('chat-' + sectionNum);
+    const div = document.createElement('div');
+    div.className = 'thinking'; div.id = 'thinking-' + sectionNum;
+    div.innerHTML = '<span></span><span></span><span></span>';
+    chatEl.appendChild(div);
+    chatEl.scrollTop = chatEl.scrollHeight;
+    setTimeout(() => { div.remove(); cb(); }, 550);
+  }
+
+  function addSysMsg(sectionNum, text) {
+    const chatEl = document.getElementById('chat-' + sectionNum);
+    const div = document.createElement('div');
+    div.className = 'sys-msg';
+    div.innerHTML = text.replace(/\n/g, '<br>');
+    chatEl.appendChild(div);
+  }
+
+  function updatePhaseDots(sectionNum, newIndex, total) {
+    for (let i = 0; i < total; i++) {
+      const dot = document.getElementById(`pd-${sectionNum}-${i}`);
+      if (!dot) continue;
+      dot.className = 'phase-dot';
+      if (i < newIndex) dot.classList.add('done');
+      else if (i === newIndex) dot.classList.add('active');
+    }
+    const counter = document.getElementById('pc-' + sectionNum);
+    if (counter) counter.textContent = Math.min(newIndex+1, total) + ' / ' + total;
+  }
+
+  function finishAgent(sectionNum) {
+    const chatEl = document.getElementById('chat-' + sectionNum);
+    const completions = {
+      2: '✨ اكتمل تحليل الميول! الصورة تتشكّل بوضوح.',
+      3: '📊 اكتمل قياس الجاهزية. نتائجك جاهزة.',
+      4: '🔮 اكتملت الرحلة الاستكشافية. تقريرك في الطريق إليك!'
+    };
+    const nextLabels = {
+      2: 'انتقل لقياس جاهزيتك المهنية 📊',
+      3: 'انتقل لمرحلة رؤية 2030 🔮',
+      4: '🏆 اعرض تقريرك المهني الكامل'
+    };
+    addSysMsg(sectionNum, completions[sectionNum]);
+    setTimeout(() => {
+      const btn = document.createElement('button');
+      btn.className = 'btn btn-gold';
+      btn.style.marginTop = '1rem';
+      btn.textContent = nextLabels[sectionNum];
+      btn.onclick = () => APP.goToSection(sectionNum === 4 ? 5 : sectionNum + 1);
+      document.getElementById('chat-' + sectionNum).appendChild(btn);
+      document.getElementById('chat-' + sectionNum).scrollTop = 99999;
+      agentState[sectionNum].done = true;
+    }, 500);
+  }
+
+  return { init };
+})();
+
+
+
+const REPORT = (() => {
+
+  function build() {
+    const holland = APP.calculateHollandCode();
+    const readiness = APP.calculateCareerReadiness();
+    const user = APP.getState().user;
+    const vision = APP.getState().vision;
+
+    const profile = HOLLAND_PROFILES[holland.topPattern] || HOLLAND_PROFILES['S'];
+    const matLevel = MATURITY_LEVELS[readiness.level];
+    const g = user.gender === 'طالب';
+    const matchPct = Math.min(95, profile.match !== undefined ? profile.match : 78);
+
+    // ── Hero ──────────────────────────────────────
+    document.getElementById('rh-label').textContent =
+      (g ? 'عزيزي الطالب ' : 'عزيزتي الطالبة ') + user.name + ' — تقريرك المهني:';
+    document.getElementById('rh-code').textContent = holland.code;
+    document.getElementById('rh-name').textContent = profile.name;
+    document.getElementById('rh-badge').innerHTML = '✅ نسبة التوافق: ' + matchPct + '%';
+    document.getElementById('rh-desc').textContent = profile.desc;
+
+    // ── Top 3 ─────────────────────────────────────
+    const sorted = Object.entries(APP.getState().holland.scores).sort((a,b) => b[1]-a[1]);
+    const top3El = document.getElementById('top3-grid');
+    top3El.innerHTML = sorted.slice(0,3).map((x, i) => `
+      <div class="top3-chip rank-${i+1}">
+        <div class="t3-rank">${['الأول','الثاني','الثالث'][i]}</div>
+        <div class="t3-letter">${x[0]}</div>
+        <div class="t3-name">${PATTERN_NAMES[x[0]]}</div>
+        <div class="t3-score">${PATTERN_DESC_SHORT[x[0]]}</div>
+      </div>`).join('');
+
+    // ── Clarity indicator ─────────────────────────
+    const maxScore = sorted[0][1];
+    const secondScore = sorted[1][1];
+    const gap = maxScore - secondScore;
+    const clarityEl = document.getElementById('clarity-box');
+    if (gap >= 3) {
+      clarityEl.innerHTML = `<div class="clarity-box clear">✅ <strong>النتيجة واضحة:</strong> ميلك نحو النمط "${PATTERN_NAMES[sorted[0][0]]}" يتميّز بوضوح عن باقي الأنماط. هذا يُعزّز موثوقية التوصيات.</div>`;
+    } else {
+      clarityEl.innerHTML = `<div class="clarity-box mixed">⚠️ <strong>ميول متعددة:</strong> درجاتك متقاربة بين عدة أنماط — مما يعني أن لديك اهتمامات متنوعة. قد يستفيد استكشافك من جلسات إرشادية متخصصة لتضييق الخيارات.</div>`;
+    }
+
+    // ── RIASEC Chart ──────────────────────────────
+    const maxVal = Math.max(...Object.values(APP.getState().holland.scores), 1);
+    const colors = { R:'#f5a623',I:'#00c9aa',A:'#8b5cf6',S:'#22c55e',E:'#f43f5e',C:'#ffc85c' };
+    document.getElementById('riasec-chart').innerHTML = sorted.map(([code, score]) => `
+      <div class="riasec-row">
+        <div class="riasec-code" style="color:${colors[code]}">${code}</div>
+        <div class="riasec-bar-bg">
+          <div class="riasec-bar-fill" style="width:0%;background:${colors[code]}" data-w="${Math.round(score/maxVal*100)}%"></div>
+        </div>
+        <div class="riasec-val">${score}</div>
+      </div>`).join('');
+    setTimeout(() => {
+      document.querySelectorAll('.riasec-bar-fill').forEach(el => { el.style.width = el.dataset.w; });
+    }, 200);
+
+    // ── Match Bars ────────────────────────────────
+    document.getElementById('maturity-bars').innerHTML = [
+      {l:'التوافق مع ميولك المهنية',        v: matchPct,    c:'mf-gold'},
+      {l:'مستوى الجاهزية المهنية',           v: readiness.overall, c:'mf-teal'},
+      {l:'التوافق مع سوق العمل 2030',       v: Math.min(95,matchPct-2), c:'mf-purple'},
+      {l:'وضوح القرار المهني',              v: gap>=3 ? Math.min(90,matchPct+5) : 55, c:'mf-green'}
+    ].map(b => `
+      <div class="match-row">
+        <div class="match-lbl"><span>${b.l}</span><span>${b.v}%</span></div>
+        <div class="match-bg"><div class="match-fill ${b.c}" style="width:0%" data-w="${b.v}%"></div></div>
+      </div>`).join('');
+    setTimeout(() => {
+      document.querySelectorAll('.match-fill').forEach(el => { el.style.width = el.dataset.w; });
+    }, 300);
+
+    // ── Maturity Breakdown ────────────────────────
+    const dims = readiness.dimensions;
+    const dimEntries = Object.entries(dims);
+    const strengths = dimEntries.filter(([,v]) => v >= 70).map(([k]) => k);
+    const needs = dimEntries.filter(([,v]) => v < 50).map(([k]) => k);
+
+    const mbEl = document.getElementById('maturity-breakdown');
+    const strengthItems = strengths.slice(0,3).map(k =>
+      `<div class="mb-item strength"><div class="mb-label">نقطة قوة</div><div class="mb-val good">✅ ${MATURITY_DIMENSIONS[k]}</div></div>`
+    );
+    const needItems = needs.slice(0,3).map(k =>
+      `<div class="mb-item needs"><div class="mb-label">تحتاج دعماً</div><div class="mb-val warn">📌 ${MATURITY_DIMENSIONS[k]}</div></div>`
+    );
+    mbEl.innerHTML = [...strengthItems, ...needItems].join('') ||
+      '<div class="mb-item"><div class="mb-val">جارٍ التقييم...</div></div>';
+
+    document.getElementById('maturity-message').innerHTML =
+      `<strong style="color:${matLevel.color}">${matLevel.badge}</strong><br><br>
+       <strong>ما تعنيه هذه النتيجة:</strong> ${matLevel.meaning}<br><br>
+       <strong>الخطوة التالية:</strong> ${matLevel.nextStep}`;
+
+    // ── Analysis ──────────────────────────────────
+    document.getElementById('analysis-text').innerHTML =
+      `<strong style="color:var(--teal2)">ما كشفته رحلتك عنك:</strong><br><br>${profile.analysis}`;
+
+    // ── Sectors ───────────────────────────────────
+    const allSectors = [...(profile.sectors||[])];
+    if (vision.sector && !allSectors.includes(vision.sector)) allSectors.unshift(vision.sector);
+    document.getElementById('sectors-grid').innerHTML = allSectors.slice(0,6).map(s =>
+      `<div class="sector-chip">${s}</div>`).join('');
+
+    // ── Jobs ──────────────────────────────────────
+    document.getElementById('jobs-grid').innerHTML = (profile.jobs||[]).map(j => `
+      <div class="job-card">
+        <div class="job-title">${j.t}</div>
+        <div class="job-demand">📈 ${j.d}</div>
+        <div class="job-sector">${j.s}</div>
+      </div>`).join('');
+
+    // ── Specs ─────────────────────────────────────
+    document.getElementById('specs-list').innerHTML = (profile.specs||[]).map(s => `
+      <div class="spec-item">
+        <span class="spec-icon">${s.icon}</span>
+        <span class="spec-text">${s.text}</span>
+      </div>`).join('');
+
+    // ── Action step ───────────────────────────────
+    document.getElementById('action-text').textContent = profile.action;
+
+    // ── Summary grid ──────────────────────────────
+    const summaryItems = [
+      {l:'الاسم',           v: user.name},
+      {l:'الجنس',           v: user.gender},
+      {l:'المدرسة',         v: user.school || '—'},
+      {l:'الصف',            v: user.grade},
+      {l:'المسار',          v: user.major},
+      {l:'الكود الثلاثي',  v: holland.code},
+      {l:'النمط المهني',    v: profile.name},
+      {l:'نسبة التوافق',   v: matchPct + '%'},
+      {l:'مستوى الجاهزية', v: matLevel.label},
+      {l:'درجة الجاهزية',  v: readiness.overall + '%'},
+      {l:'القطاع المناسب', v: vision.sector || profile.sectors[0]},
+      {l:'المحرك الأساسي', v: vision.driver || '—'}
+    ];
+    document.getElementById('summary-grid').innerHTML = summaryItems.map(i =>
+      `<div class="si"><div class="sl">${i.l}</div><div class="sv">${i.v}</div></div>`).join('');
+  }
+
+  return { build };
+})();
+
+</script>
+</body>
+</html>
